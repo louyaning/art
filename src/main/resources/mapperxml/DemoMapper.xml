@@ -1,70 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.lyn.bill.mapper.BillMapper" >
-  <resultMap id="BaseResultMap" type="cn.lyn.bill.entity.Bill" >
-    <id column="id" property="id"  />
-    <result column="name" property="name"  />
-    <result column="price" property="price" />
-    <result column="bill_type" property="billType"/>
-    <result column="account" property="account" />
-    <result column="create_date" property="createDate" />
-    <result column="is_delete" property="isDelete" />
-  </resultMap>
-
+<mapper namespace="com.team.art.mapper.DemoMapper" >
   <sql id="Base_Column_List" >
     id, `name`, price, bill_type, account, create_date
   </sql>
-    <!--插入一条-->
-  <insert id="insert" parameterType="cn.lyn.bill.entity.Bill" >
-    insert into bill (id, `name`, price,bill_type,account,create_date)
-    values (#{id}, #{name}, #{price},
-      #{billType},#{account},#{createDate}
-      )
-  </insert>
-
-    <!--插入多条-->
-  <insert id="insertSelective" parameterType="cn.lyn.bill.entity.Bill" >
-    INSERT INTO bill (name, price, bill_type, account, create_date)
-    VALUES
-    <foreach collection="list" item="item" index="index"
-             separator=",">
-      (
-      #{item.name},
-      #{item.price},
-      #{item.billType},
-      #{item.account},
-      #{item.createDate}
-      )
-    </foreach>
-  </insert>
-    <!--条件查询账单
-        主要的包括时间周期
-    -->
-    <select id="selectByCondition" parameterType="cn.lyn.bill.entity.BillCondition" resultMap="BaseResultMap">
-        SELECT <include refid="Base_Column_List"/>
-        FROM bill WHERE
-        bill_type =  #{billType}
-            AND   <![CDATA[  `create_date` >= #{startDate} AND `create_date` <= #{endDate} ]]>
-        <if test="account != null" >
-            AND account=#{account}
-        </if>
-      and is_delete=0
-    </select>
-
-    <update id="deleteByCondition" parameterType="cn.lyn.bill.entity.Bill">
-        UPDATE bill SET is_delete = 1 WHERE id IN
-        <foreach collection="list" item="item" index="index" open="(" separator="," close=")" >
-            #{item.id}
-        </foreach>
-    </update>
-
-
-  <!--<select id="countByExample" parameterType="cn.lyn.old.entity.UserExample" resultType="java.lang.Integer" >
-    select count(*) from user
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>-->
-
 
 </mapper>

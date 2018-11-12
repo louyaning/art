@@ -1,4 +1,4 @@
-package com.team.service;
+package com.team.art.service;
 
 import org.springframework.stereotype.Service;
 

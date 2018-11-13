@@ -16,7 +16,7 @@ public class DemoController {
     private static final Logger logger = LoggerFactory.getLogger(DemoController.class);
     @RequestMapping("/test")
     public String testJsp(){
-        logger.info("这是info日志");
+        logger.info("这是info日志1");
         return "test";
     }
     @ResponseBody

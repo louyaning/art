@@ -30,7 +30,7 @@
     delete from user
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.myself.demo.User" >
+  <insert id="insert" parameterType="com.team.art.entity.user.User" >
     insert into user (id, username, password, 
       mobile, email, info, 
       type, create_datetime, modify_datetime, 
@@ -42,7 +42,7 @@
       #{weight,jdbcType=INTEGER}, #{loginDatetime,jdbcType=TIMESTAMP}, #{descMemo,jdbcType=VARCHAR}, 
       #{isDelete,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.myself.demo.User" >
+  <insert id="insertSelective" parameterType="com.team.art.entity.user.User" >
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -127,7 +127,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.myself.demo.User" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.team.art.entity.user.User" >
     update user
     <set >
       <if test="username != null" >
@@ -169,7 +169,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.myself.demo.User" >
+  <update id="updateByPrimaryKey" parameterType="com.team.art.entity.user.User" >
     update user
     set username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},

@@ -299,7 +299,7 @@
     <profile>
       <id>dev</id>
       <activation>
-        <activeByDefault>true</activeByDefault>
+        <activeByDefault>false</activeByDefault>
       </activation>
       <properties>
         <release-version>dev</release-version>
@@ -314,7 +314,7 @@
     <profile>
       <id>pro</id>
       <activation>
-        <activeByDefault>false</activeByDefault>
+        <activeByDefault>true</activeByDefault>
       </activation>
       <properties>
         <release-version>pro</release-version>

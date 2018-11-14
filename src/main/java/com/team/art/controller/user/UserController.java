@@ -30,9 +30,9 @@ public class UserController {
         User user = userService.selectByNameAndPassword(request.getParameter("username"),
             request.getParameter("password"));
         if (null != user) {
-            return "test";
-        } else {
             return "index";
+        } else {
+            return "login";
         }
     }
 

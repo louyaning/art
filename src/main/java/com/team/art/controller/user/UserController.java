@@ -32,7 +32,7 @@ public class UserController {
         if (null != user) {
             return "test";
         } else {
-            return "fail";
+            return "index";
         }
     }
 

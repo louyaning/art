@@ -48,12 +48,12 @@
     <br>
     <br>
 
-    <form method="post" action="admin-index.html" class="am-form">
+    <form method="post" action="${ctx}/user/login" class="am-form">
       <label for="username">账号:</label>
       <input type="text" name="username" id="username" value="">
       <br>
       <label for="password">密码:</label>
-      <input type="text" name="password" id="password" value="">
+      <input type="password" name="password" id="password" value="">
       <br>
     
       <br />

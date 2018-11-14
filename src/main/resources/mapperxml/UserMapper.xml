@@ -185,4 +185,14 @@
       is_delete = #{isDelete,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
+   <!-- 登录 -->
+   <select id="selectByNameAndPassword" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where username = #{username}
+    and password= #{password}
+  </select>
+  
+  
 </mapper>

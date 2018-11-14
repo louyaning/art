@@ -1,10 +1,11 @@
 package com.team.art.service.user;
 
-import org.springframework.stereotype.Service;
+import com.team.art.entity.user.User;
 
 /**
  * Created by YaNing on 2018/11/12.
  */
-@Service
+
 public interface UserService {
+    User selectByNameAndPassword(String username, String password);
 }

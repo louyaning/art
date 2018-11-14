@@ -49,11 +49,11 @@
     <br>
 
     <form method="post" action="admin-index.html" class="am-form">
-      <label for="email">账号:</label>
-      <input type="email" name="" id="email" value="">
+      <label for="username">账号:</label>
+      <input type="text" name="username" id="username" value="">
       <br>
       <label for="password">密码:</label>
-      <input type="password" name="" id="password" value="">
+      <input type="text" name="password" id="password" value="">
       <br>
     
       <br />

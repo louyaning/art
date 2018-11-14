@@ -3,29 +3,29 @@ package com.team.art.entity.user;
 import java.util.Date;
 
 public class User {
-    private Long    id;
+    private Long id;
 
-    private String  username;
+    private String username;
 
-    private String  password;
+    private String password;
 
-    private String  mobile;
+    private String mobile;
 
-    private String  email;
+    private String email;
 
-    private String  info;
+    private String info;
 
-    private String  type;
+    private String type;
 
-    private Date    createDatetime;
+    private Date createDatetime;
 
-    private Date    modifyDatetime;
+    private Date modifyDatetime;
 
     private Integer weight;
 
-    private Date    loginDatetime;
+    private Date loginDatetime;
 
-    private String  desc;
+    private String desc;
 
     private Integer isDelete;
 
@@ -132,5 +132,4 @@ public class User {
     public void setIsDelete(Integer isDelete) {
         this.isDelete = isDelete;
     }
-
 }

@@ -1,7 +1,10 @@
 package com.team.art.mapper.log;
 
+import org.springframework.stereotype.Repository;
+
 import com.team.art.entity.log.Log;
 
+@Repository
 public interface LogMapper {
     int deleteByPrimaryKey(Long id);
 

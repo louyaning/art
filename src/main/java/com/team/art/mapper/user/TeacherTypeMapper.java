@@ -1,7 +1,10 @@
 package com.team.art.mapper.user;
 
+import org.springframework.stereotype.Repository;
+
 import com.team.art.entity.user.TeacherType;
 
+@Repository
 public interface TeacherTypeMapper {
     int deleteByPrimaryKey(Integer id);
 

@@ -36,22 +36,20 @@
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <property name="typeAliasesPackage" value="com.team.entity" />
+        <property name="typeAliasesPackage" value="com.team.art.entity" />
         <!--自动扫描mapping.xml文件;-->
         <property name="mapperLocations" value="classpath:mapperxml/*.xml"></property>
-        <property name="typeAliasesPackage" value="com.team.art.entity"/>
 		<property name="plugins">
-		  <array>
-		    <bean class="com.github.pagehelper.PageHelper">
-		      <property name="properties">
-		        <value>
-		            dialect=mysql
-		            reasonable=true
-		        </value>
-		      </property>
-		    </bean>
-		  </array>
-		</property>
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor">
+                    <property name="properties">
+                        <value>
+　　　　　　　　　　　　　　　　helperDialect=mysql
+　　　　　　　　　　　　　　</value>
+                    </property>
+                </bean>
+            </array>
+        </property>
     </bean>
   
     <!-- Map接口所在包名，Spring会自动查找其下的类 -->  

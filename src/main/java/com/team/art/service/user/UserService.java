@@ -8,4 +8,38 @@ import com.team.art.entity.user.User;
 
 public interface UserService {
     User selectByNameAndPassword(String username, String password);
+
+    /**
+     * 
+     * 新增老师
+     * @param record
+     * @return
+     */
+    int insertUser(User record);
+
+    /**
+     * 
+     * 修改老师
+     * @param record
+     * @return
+     */
+
+    int updateByUser(User record);
+
+    /**
+     * 
+     * 删除老师
+     * @param id
+     * @return
+     */
+
+    int deleteByPrimaryKey(Long id);
+
+    /**
+     * 
+     * 查看详情
+     * @param id
+     * @return
+     */
+    User selectByPrimaryKey(Long id);
 }

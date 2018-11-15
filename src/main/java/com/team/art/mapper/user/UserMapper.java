@@ -11,11 +11,11 @@ public interface UserMapper {
 
     int insert(User record);
 
-    int insertSelective(User record);
+    int insertUser(User record);
 
     User selectByPrimaryKey(Long id);
 
-    int updateByPrimaryKeySelective(User record);
+    int updateByUser(User user);
 
     int updateByPrimaryKey(User record);
 

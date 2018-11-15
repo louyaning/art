@@ -42,7 +42,7 @@
       #{weight,jdbcType=INTEGER}, #{loginDatetime,jdbcType=TIMESTAMP}, #{descMemo,jdbcType=VARCHAR}, 
       #{isDelete,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.team.art.entity.user.User" >
+  <insert id="insertUser" parameterType="com.team.art.entity.user.User" >
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -127,7 +127,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.team.art.entity.user.User" >
+  <update id="updateByUser" parameterType="com.team.art.entity.user.User" >
     update user
     <set >
       <if test="username != null" >

@@ -16,4 +16,28 @@ public class UserServiceImpl implements UserService {
     public User selectByNameAndPassword(String username, String password) {
         return userMapper.selectByNameAndPassword(username, password);
     }
+
+    @Override
+    public int insertUser(User user) {
+        int result = userMapper.insertUser(user);
+        return result;
+    }
+
+    @Override
+    public int updateByUser(User user) {
+        int result = userMapper.updateByUser(user);
+        return result;
+    }
+
+    @Override
+    public int deleteByPrimaryKey(Long id) {
+        int result = userMapper.deleteByPrimaryKey(id);
+        return result;
+    }
+
+    @Override
+    public User selectByPrimaryKey(Long id) {
+        User user = userMapper.selectByPrimaryKey(id);
+        return user;
+    }
 }

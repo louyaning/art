@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.team.art.controller.DemoController;
@@ -36,4 +37,45 @@ public class UserController {
         }
     }
 
+    @RequestMapping("/add")
+    public String insertUser(User user) {
+        int result = userService.insertUser(user);
+        if (result == 1) {
+            return "teacher_list";
+        } else {
+            return "注册失败";
+        }
+    }
+
+    @RequestMapping("/toadd")
+    public String toAdd() {
+        System.out.println("caoiniwc");
+        return "teacher_add";
+    }
+
+    @RequestMapping("/update")
+    public String updateUser(User user) {
+        int result = userService.updateByUser(user);
+        if (result == 1) {
+            return "teacher_list";
+        } else {
+            return "注册失败";
+        }
+    }
+
+    @RequestMapping("/delete")
+    public String deleteUser(Long id) {
+        int result = userService.deleteByPrimaryKey(id);
+        if (result == 1) {
+            return "teacher_list";
+        } else {
+            return "注册失败";
+        }
+    }
+
+    @RequestMapping("/detail")
+    public ModelAndView findById(Long id) {
+        User user = userService.selectByPrimaryKey(id);
+        return new ModelAndView("teacher_detail").addObject("user", user);
+    }
 }

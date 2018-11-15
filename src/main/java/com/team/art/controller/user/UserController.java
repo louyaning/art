@@ -1,5 +1,7 @@
 package com.team.art.controller.user;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -39,6 +41,9 @@ public class UserController {
 
     @RequestMapping("/add")
     public String insertUser(User user) {
+        Date createDatetime = new Date();
+        user.setCreateDatetime(createDatetime);
+        user.setIsDelete(1);
         int result = userService.insertUser(user);
         if (result == 1) {
             return "teacher_list";

@@ -45,7 +45,7 @@ public interface UserService {
      */
     User selectByPrimaryKey(Long id);
 
-    List<User> getAll();
+    List<User> getAll(User user);
 
     /**
     * 

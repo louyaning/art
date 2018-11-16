@@ -35,7 +35,40 @@
   <%@ include file="/common/left.jsp"%>
  
 <!-- content start -->
+
+
 <div class="admin-content">
+
+<form action="${ctx}/user/users" id="pageForm">
+ <div class="am-g">
+      <div class="am-u-md-6 am-cf">
+        <div class="am-fl am-cf">
+          <div class="am-btn-toolbar am-fl">
+            <div class="am-btn-group am-btn-group-xs">
+             <!--  <button type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 新增</button> -->
+            </div>
+              <div class="am-form-group am-margin-left am-fl">
+              <select>
+                <option value="option1">所有类别</option>
+                
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="am-u-md-3 am-cf">
+        <div class="am-fr">
+          <div class="am-input-group am-input-group-sm">
+            <input type="text" id="username" name="username" class="am-form-field" placeholder="请输入老师姓名">
+                <span class="am-input-group-btn">
+                  <button id="query" class="am-btn am-btn-default" type="button">搜索</button>
+                </span>
+          </div>
+        </div>
+      </div>
+    </div>
+</form>
+
  <div class="am-g">
       <div class="am-u-sm-12">
         <table class="am-table am-table-bd am-table-striped admin-content-table">
@@ -154,5 +187,12 @@
 <script src="../assets/js/amazeui.min.js"></script>
 <!--<![endif]-->
 <script src="../assets/js/app.js"></script>
+<script type="text/javascript">
+$(function () {
+  $("#query").click(function () {
+	  $("#pageForm").submit();
+    });
+});
+</script>  
 </body>
 </html>

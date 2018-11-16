@@ -70,10 +70,10 @@ public class UserController {
 
     @RequestMapping("/users")
     public String SearchPage(@RequestParam(value = "pn", defaultValue = "1") Integer pn,
-                             Model model) {
+                             Model model, User user) {
         //使用分页插件
         PageHelper.startPage(pn, 5);
-        List<User> users = userService.getAll();
+        List<User> users = userService.getAll(user);
         //使用PageInfo包装查询后的结果，只需要将PageInfo交个页面就好了
         //可传入连续显示的页数
         PageInfo page = new PageInfo(users, 8);

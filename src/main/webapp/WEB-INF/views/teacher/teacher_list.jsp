@@ -76,10 +76,15 @@
                                         <td>
                                                 ${ele.info}
                                         </td>
-                                        <td>
-                                            <a href="${ctx }/user/toUpdate/${ele.id}">编辑</a>
-                                            <a class="doubleCheck" href="${ctx}/user/delete?id=${ele.id}">删除</a> 
+                                        <td >
+                                         <div class="am-btn-toolbar">
+                                           <div class="am-btn-group am-btn-group-xs">
+                                            <a style="color: #7A67EE" class="am-btn am-btn-default am-btn-xs am-text-secondary" href="${ctx }/user/toUpdate?id=${ele.id}"><span class="am-icon-pencil-square-o"></span>编辑</a>
+                                            <a style="color: #FF4500" class="am-btn am-btn-default am-btn-xs am-text-danger" href="${ctx}/user/delete?id=${ele.id}"><span class="am-icon-trash-o"></span> 删除</a> 
+                                          </div>
+                                          </div>
                                         </td>
+                                        
                                     </tr>
                                 </c:forEach>
                                 </tbody>

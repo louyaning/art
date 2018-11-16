@@ -25,4 +25,6 @@ public interface UserMapper {
                                  @Param("password") String password);
 
     List<User> listAllUsers();
+
+    int updateByDelete(Long id);
 }

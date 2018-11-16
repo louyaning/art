@@ -47,4 +47,10 @@ public class UserServiceImpl implements UserService {
     public List<User> getAll() {
         return userMapper.listAllUsers();
     }
+
+    @Override
+    public int updateByDelete(Long id) {
+        int result = userMapper.updateByDelete(id);
+        return result;
+    }
 }

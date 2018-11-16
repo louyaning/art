@@ -46,4 +46,11 @@ public interface UserService {
     User selectByPrimaryKey(Long id);
 
     List<User> getAll();
+
+    /**
+    * 
+    * 逻辑删除
+    * @return
+    */
+    int updateByDelete(Long id);
 }

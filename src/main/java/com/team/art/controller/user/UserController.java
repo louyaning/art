@@ -51,7 +51,7 @@ public class UserController {
         user.setIsDelete(1);
         int result = userService.insertUser(user);
         if (result == 1) {
-            return "teacher_list";
+            return "redirect:users";
         } else {
             return "注册失败";
         }
@@ -59,12 +59,13 @@ public class UserController {
 
     @RequestMapping("/toadd")
     public String toAdd() {
-        return "teacher_add";
+        return "teacher/teacher_add";
     }
 
     @RequestMapping("/toUpdate")
-    public String toUpdate() {
-        return "teacher_update";
+    public ModelAndView toUpdate(Long id) {
+        User user = userService.selectByPrimaryKey(id);
+        return new ModelAndView("teacher/teacher_update").addObject("user", user);
     }
 
     @RequestMapping("/users")
@@ -78,7 +79,7 @@ public class UserController {
         PageInfo page = new PageInfo(users, 8);
         model.addAttribute("pageInfo", page);
 
-        return "teacher_list";//由于视图解析器，会跳转到/WEB-INF/views/目录下
+        return "teacher/teacher_list";//由于视图解析器，会跳转到/WEB-INF/views/目录下
 
     }
 
@@ -86,7 +87,7 @@ public class UserController {
     public String updateUser(User user) {
         int result = userService.updateByUser(user);
         if (result == 1) {
-            return "teacher_list";
+            return "redirect:users";
         } else {
             return "注册失败";
         }
@@ -94,9 +95,9 @@ public class UserController {
 
     @RequestMapping("/delete")
     public String deleteUser(Long id) {
-        int result = userService.deleteByPrimaryKey(id);
+        int result = userService.updateByDelete(id);
         if (result == 1) {
-            return "teacher_list";
+            return "redirect:users";
         } else {
             return "注册失败";
         }

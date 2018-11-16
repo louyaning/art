@@ -1,6 +1,7 @@
 package com.team.art.controller.user;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -8,10 +9,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.team.art.controller.DemoController;
 import com.team.art.entity.user.User;
 import com.team.art.service.user.UserService;
@@ -54,8 +59,27 @@ public class UserController {
 
     @RequestMapping("/toadd")
     public String toAdd() {
-        System.out.println("caoiniwc");
         return "teacher_add";
+    }
+
+    @RequestMapping("/toUpdate")
+    public String toUpdate() {
+        return "teacher_update";
+    }
+
+    @RequestMapping("/users")
+    public String SearchPage(@RequestParam(value = "pn", defaultValue = "1") Integer pn,
+                             Model model) {
+        //使用分页插件
+        PageHelper.startPage(pn, 5);
+        List<User> users = userService.getAll();
+        //使用PageInfo包装查询后的结果，只需要将PageInfo交个页面就好了
+        //可传入连续显示的页数
+        PageInfo page = new PageInfo(users, 8);
+        model.addAttribute("pageInfo", page);
+
+        return "teacher_list";//由于视图解析器，会跳转到/WEB-INF/views/目录下
+
     }
 
     @RequestMapping("/update")

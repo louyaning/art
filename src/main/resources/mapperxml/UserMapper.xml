@@ -194,5 +194,14 @@
     and password= #{password}
   </select>
   
+  <!-- 分页查询 -->
+   <select id="listAllUsers" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from user 
+    <where>
+    is_delete=1  
+    </where>
+  </select>
   
 </mapper>

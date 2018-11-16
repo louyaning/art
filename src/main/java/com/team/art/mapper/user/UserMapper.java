@@ -1,5 +1,7 @@
 package com.team.art.mapper.user;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -21,4 +23,6 @@ public interface UserMapper {
 
     User selectByNameAndPassword(@Param("username") String username,
                                  @Param("password") String password);
+
+    List<User> listAllUsers();
 }

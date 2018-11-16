@@ -1,5 +1,7 @@
 package com.team.art.service.user;
 
+import java.util.List;
+
 import com.team.art.entity.user.User;
 
 /**
@@ -42,4 +44,6 @@ public interface UserService {
      * @return
      */
     User selectByPrimaryKey(Long id);
+
+    List<User> getAll();
 }

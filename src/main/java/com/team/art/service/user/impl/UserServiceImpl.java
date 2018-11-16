@@ -1,5 +1,7 @@
 package com.team.art.service.user.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,5 +41,10 @@ public class UserServiceImpl implements UserService {
     public User selectByPrimaryKey(Long id) {
         User user = userMapper.selectByPrimaryKey(id);
         return user;
+    }
+
+    @Override
+    public List<User> getAll() {
+        return userMapper.listAllUsers();
     }
 }

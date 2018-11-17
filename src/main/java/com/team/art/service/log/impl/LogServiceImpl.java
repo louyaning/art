@@ -26,4 +26,10 @@ public class LogServiceImpl implements LogService {
         return listAllLog;
     }
 
+    @Override
+    public int deleteByPrimaryKey(Long id) {
+        int result = logMapper.deleteByPrimaryKey(id);
+        return result;
+    }
+
 }

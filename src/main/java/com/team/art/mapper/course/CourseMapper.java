@@ -1,5 +1,7 @@
 package com.team.art.mapper.course;
 
+import java.util.List;
+
 import com.team.art.entity.course.Course;
 
 public interface CourseMapper {
@@ -14,4 +16,8 @@ public interface CourseMapper {
     int updateByPrimaryKeySelective(Course record);
 
     int updateByPrimaryKey(Course record);
+
+    List<Course> listAllCourses(Course course);
+
+    int updateByDelete(Integer id);
 }

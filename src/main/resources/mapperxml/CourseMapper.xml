@@ -138,4 +138,23 @@
       is_delete = #{isDelete,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <!-- 分页查询 -->
+   <select id="listAllCourses" resultMap="BaseResultMap" parameterType="com.team.art.entity.course.Course">
+    select
+    <include refid="Base_Column_List" />
+    from course 
+    where
+    is_delete=1 
+     
+    order by id ASC
+  </select>
+  
+  <!--   逻辑删除 -->
+   <update id="updateByDelete" parameterType="java.lang.Integer" >
+    update course
+    set 
+      is_delete = 2
+    where id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>

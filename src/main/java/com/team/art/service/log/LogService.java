@@ -8,4 +8,6 @@ public interface LogService {
     int insert(Log record);
 
     List<Log> listAllLog(Log log);
+
+    int deleteByPrimaryKey(Long id);
 }

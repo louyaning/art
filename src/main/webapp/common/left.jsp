@@ -23,14 +23,14 @@
       <li class="admin-parent">
        <a class="am-cf" data-am-collapse="{target: '#collapse-nav1'}"><span class="am-icon-file"></span>课程管理<span class="am-icon-angle-right am-fr am-margin-right"></span></a>
         <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav1">
-          <li><a href="${ctx}/user/toadd" class="am-cf"><span class="am-icon-check"></span> 新增课程<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
-          <li><a href="${ctx}/user/users"><span class="am-icon-puzzle-piece"></span> 课程列表</a></li>
+          <li><a href="${ctx}/course/toadd" class="am-cf"><span class="am-icon-check"></span> 新增课程<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
+          <li><a href="${ctx}/course/courses"><span class="am-icon-puzzle-piece"></span> 课程列表</a></li>
          
         </ul>
       </li>
        <li class="admin-parent">
-       <a class="am-cf" data-am-collapse="{target: '#collapse-nav1'}"><span class="am-icon-file"></span>课件管理<span class="am-icon-angle-right am-fr am-margin-right"></span></a>
-        <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav1">
+       <a class="am-cf" data-am-collapse="{target: '#collapse-nav2'}"><span class="am-icon-file"></span>课件管理<span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+        <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav2">
           <li><a href="${ctx}/user/toadd" class="am-cf"><span class="am-icon-check"></span> 新增课件<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
           <li><a href="${ctx}/user/users"><span class="am-icon-puzzle-piece"></span>课件查看</a></li>
          
@@ -38,8 +38,8 @@
       </li>
       
       <li class="admin-parent">
-       <a class="am-cf" data-am-collapse="{target: '#collapse-nav1'}"><span class="am-icon-file"></span>权限管理<span class="am-icon-angle-right am-fr am-margin-right"></span></a>
-        <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav1">
+       <a class="am-cf" data-am-collapse="{target: '#collapse-nav3'}"><span class="am-icon-file"></span>权限管理<span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+        <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav3">
           <li><a href="${ctx}/user/toadd" class="am-cf"><span class="am-icon-check"></span> 新增权限<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
           <li><a href="${ctx}/user/users"><span class="am-icon-puzzle-piece"></span>权限查看</a></li>
         </ul>

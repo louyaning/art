@@ -33,4 +33,15 @@ public class LogController {
         return "log/log_list";//由于视图解析器，会跳转到/WEB-INF/views/目录下
 
     }
+
+    @RequestMapping("/delete")
+    public String deleteLog(Long id) {
+        int result = logService.deleteByPrimaryKey(id);
+        if (result == 1) {
+            return "redirect:logs";
+        } else {
+            return "注册失败";
+        }
+    }
+
 }

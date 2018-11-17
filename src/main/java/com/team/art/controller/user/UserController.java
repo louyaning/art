@@ -18,8 +18,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.team.art.controller.DemoController;
+import com.team.art.entity.log.Log;
 import com.team.art.entity.user.User;
+import com.team.art.service.log.LogService;
 import com.team.art.service.user.UserService;
+import com.team.art.util.SessionUtil;
 
 /**
  * Created by YaNing on 2018/11/12.
@@ -31,13 +34,23 @@ public class UserController {
 
     @Autowired
     private UserService         userService;
+    @Autowired
+    private LogService          logService;
 
     @RequestMapping("/login")
     public String login(HttpServletRequest request, RedirectAttributes redirectAttributes) {
 
         User user = userService.selectByNameAndPassword(request.getParameter("username"),
             request.getParameter("password"));
+
         if (null != user) {
+            SessionUtil.getSession().setAttribute("user", user);
+            Log log = new Log();
+            Date loginTime = new Date();
+            log.setUserName(user.getUsername());
+            log.setLoginTime(loginTime);
+            log.setUserId(user.getId());
+            logService.insert(log);
             return "index";
         } else {
             return "login";
@@ -85,6 +98,8 @@ public class UserController {
 
     @RequestMapping("/update")
     public String updateUser(User user) {
+        Date modifyDatetime = new Date();
+        user.setModifyDatetime(modifyDatetime);
         int result = userService.updateByUser(user);
         if (result == 1) {
             return "redirect:users";

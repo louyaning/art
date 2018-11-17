@@ -1,5 +1,7 @@
 package com.team.art.mapper.log;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.team.art.entity.log.Log;
@@ -17,4 +19,6 @@ public interface LogMapper {
     int updateByPrimaryKeySelective(Log record);
 
     int updateByPrimaryKey(Log record);
+
+    List<Log> listAllLog(Log log);
 }

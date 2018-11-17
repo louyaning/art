@@ -23,7 +23,7 @@
     delete from permission
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.team.art.entity.permission" >
+  <insert id="insert" parameterType="com.team.art.entity.permission.Permission" >
     insert into permission (id, teacher_id, course_id, 
       course_branch_id, create_datetime, modify_datetime, 
       is_delete)
@@ -31,7 +31,7 @@
       #{courseBranchId,jdbcType=INTEGER}, #{createDatetime,jdbcType=TIMESTAMP}, #{modifyDatetime,jdbcType=TIMESTAMP}, 
       #{isDelete,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.team.art.entity.permission" >
+  <insert id="insertSelective" parameterType="com.team.art.entity.permission.Permission" >
     insert into permission
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -80,7 +80,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.team.art.entity.permission" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.team.art.entity.permission.Permission" >
     update permission
     <set >
       <if test="teacherId != null" >
@@ -104,7 +104,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.team.art.entity.permission" >
+  <update id="updateByPrimaryKey" parameterType="com.team.art.entity.permission.Permission" >
     update permission
     set teacher_id = #{teacherId,jdbcType=INTEGER},
       course_id = #{courseId,jdbcType=INTEGER},

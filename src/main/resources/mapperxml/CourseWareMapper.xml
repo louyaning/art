@@ -28,7 +28,7 @@
     delete from course_ware
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.team.art.entity.courseware" >
+  <insert id="insert" parameterType="com.team.art.entity.courseware.CourseWare" >
     insert into course_ware (id, course_id, ware_name, 
       ware_url, create_datetime, modify_datetime, 
       is_delete, desc, branch, 
@@ -38,7 +38,7 @@
       #{isDelete,jdbcType=INTEGER}, #{desc,jdbcType=VARCHAR}, #{branch,jdbcType=INTEGER}, 
       #{suffix,jdbcType=VARCHAR}, #{weight,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.team.art.entity.courseware" >
+  <insert id="insertSelective" parameterType="com.team.art.entity.courseware.CourseWare" >
     insert into course_ware
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -111,7 +111,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.team.art.entity.courseware" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.team.art.entity.courseware.CourseWare" >
     update course_ware
     <set >
       <if test="courseId != null" >
@@ -147,7 +147,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.team.art.entity.courseware" >
+  <update id="updateByPrimaryKey" parameterType="com.team.art.entity.courseware.CourseWare" >
     update course_ware
     set course_id = #{courseId,jdbcType=INTEGER},
       ware_name = #{wareName,jdbcType=VARCHAR},

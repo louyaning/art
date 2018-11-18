@@ -32,21 +32,21 @@ public class CourseWareController {
         PageInfo page = new PageInfo(courseWare, 8);
         model.addAttribute("pageInfo", page);
 
-        return "coursewares/coursewares_list";//由于视图解析器，会跳转到/WEB-INF/views/目录下
+        return "courseware/courseware_list";//由于视图解析器，会跳转到/WEB-INF/views/目录下
 
     }
 
     @RequestMapping("/toadd")
     public String toAdd() {
-        return "course/course_add";
+        return "courseware/courseware_add";
     }
 
     @RequestMapping("/add")
-    public String insertUser(CourseWare course) {
+    public String insertUser(CourseWare courseware) {
         Date createDatetime = new Date();
-        course.setCreateDatetime(createDatetime);
-        course.setIsDelete(1);
-        int result = courseWareService.insertSelective(course);
+        courseware.setCreateDatetime(createDatetime);
+        courseware.setIsDelete(1);
+        int result = courseWareService.insertSelective(courseware);
         if (result == 1) {
             return "redirect:coursewares";
         } else {
@@ -57,7 +57,7 @@ public class CourseWareController {
     @RequestMapping("/toUpdate")
     public ModelAndView toUpdate(Integer id) {
         CourseWare course = courseWareService.selectById(id);
-        return new ModelAndView("coursewares/coursewares_update").addObject("course", course);
+        return new ModelAndView("courseware/courseware_update").addObject("course", course);
     }
 
     @RequestMapping("/update")

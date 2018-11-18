@@ -63,7 +63,7 @@
         is_delete,
       </if>
       <if test="desc != null" >
-        desc,
+        `desc`,
       </if>
       <if test="branch != null" >
         branch,
@@ -111,6 +111,7 @@
       </if>
     </trim>
   </insert>
+  
   <update id="updateByPrimaryKeySelective" parameterType="com.team.art.entity.courseware.CourseWare" >
     update course_ware
     <set >
@@ -162,13 +163,12 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <!-- 分页查询 -->
-   <select id="listAllCourses" resultMap="BaseResultMap" parameterType="com.team.art.entity.courseware.CourseWare">
+   <select id="listAllCourseWares" resultMap="BaseResultMap" parameterType="com.team.art.entity.courseware.CourseWare">
     select
-    <include refid="Base_Column_List" />
+    *
     from course_ware 
     where
-    is_delete=1 
-     
+    is_delete=1  
     order by id ASC
   </select>
    <!--   逻辑删除 -->

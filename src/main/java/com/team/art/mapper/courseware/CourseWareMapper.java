@@ -17,7 +17,7 @@ public interface CourseWareMapper {
 
     int updateByPrimaryKey(CourseWare record);
 
-    List<CourseWare> listAllCourses(CourseWare courseWare);
+    List<CourseWare> listAllCourseWares(CourseWare courseWare);
 
     int updateByDelete(Integer id);
 }

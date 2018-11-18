@@ -17,7 +17,7 @@ public class CourseWareServiceImpl implements CourseWareService {
 
     @Override
     public List<CourseWare> listAllCourses(CourseWare course) {
-        List<CourseWare> courseWare = courseWareMapper.listAllCourses(course);
+        List<CourseWare> courseWare = courseWareMapper.listAllCourseWares(course);
         return courseWare;
     }
 

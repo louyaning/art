@@ -26,7 +26,7 @@ public class CourseWareController {
                              Model model, CourseWare courseware) {
         //使用分页插件
         PageHelper.startPage(pn, 5);
-        List<CourseWare> courseWare = courseWareService.listAllCourses(courseware);
+        List<CourseWare> courseWare = courseWareService.listAllCoursesWare(courseware);
         //使用PageInfo包装查询后的结果，只需要将PageInfo交个页面就好了
         //可传入连续显示的页数
         PageInfo page = new PageInfo(courseWare, 8);

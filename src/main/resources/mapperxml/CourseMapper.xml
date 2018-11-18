@@ -11,6 +11,7 @@
     <result column="create_datetime" property="createDatetime" jdbcType="TIMESTAMP" />
     <result column="modify_datetime" property="modifyDatetime" jdbcType="TIMESTAMP" />
     <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+   
   </resultMap>
   <sql id="Base_Column_List" >
     id, course_name, cover, weight, pid, p_name, create_datetime, modify_datetime, is_delete
@@ -146,8 +147,18 @@
     from course 
     where
     is_delete=1 
-     
-    order by id ASC
+    order by id desc
+  </select>
+  <!-- 父课程与子课程关联方法 -->
+   <select id="listCoursesByPid" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select
+    <include refid="Base_Column_List" />
+    from course 
+    where
+    is_delete=1
+    and
+    pid = #{pid}
+    order by weight desc
   </select>
   
   <!--   逻辑删除 -->

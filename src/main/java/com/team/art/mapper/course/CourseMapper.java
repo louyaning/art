@@ -20,4 +20,6 @@ public interface CourseMapper {
     List<Course> listAllCourses(Course course);
 
     int updateByDelete(Integer id);
+    
+    List<Course> listCoursesByPid(Integer pid);
 }

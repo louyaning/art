@@ -16,7 +16,7 @@
   </resultMap>
   <sql id="Base_Column_List" >
     id, course_id, ware_name, ware_url, create_datetime, modify_datetime, is_delete, 
-    desc, branch, suffix, weight
+    `desc`, branch, suffix, weight
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -171,6 +171,18 @@
     is_delete=1  
     order by id ASC
   </select>
+     
+   <!-- 分页查询 -->
+   <select id="listCoursesWareByBranch" resultMap="BaseResultMap" parameterType="com.team.art.entity.courseware.CourseWare">
+    select
+    <include refid="Base_Column_List" />
+    from course_ware 
+    where
+    is_delete=1 
+    and course_id = #{courseId}
+     
+    order by weight DESC
+   </select>
    <!--   逻辑删除 -->
    <update id="updateByDelete" parameterType="java.lang.Integer" >
     update course_ware

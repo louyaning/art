@@ -16,9 +16,9 @@ public class CourseWareServiceImpl implements CourseWareService {
     private CourseWareMapper courseWareMapper;
 
     @Override
-    public List<CourseWare> listAllCourses(CourseWare course) {
-        List<CourseWare> courseWare = courseWareMapper.listAllCourseWares(course);
-        return courseWare;
+    public List<CourseWare> listAllCoursesWare(CourseWare courseWare) {
+        List<CourseWare> courseWares = courseWareMapper.listAllCourseWares(courseWare);
+        return courseWares;
     }
 
     @Override
@@ -44,4 +44,12 @@ public class CourseWareServiceImpl implements CourseWareService {
         int result = courseWareMapper.updateByDelete(id);
         return result;
     }
+
+    @Override
+    public List<CourseWare> listCoursesWareByBranch(CourseWare courseWare) {
+        List<CourseWare> listCoursesWareByBranch = courseWareMapper
+            .listCoursesWareByBranch(courseWare);
+        return listCoursesWareByBranch;
+    }
+
 }

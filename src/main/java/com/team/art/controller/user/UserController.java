@@ -51,7 +51,7 @@ public class UserController {
             log.setLoginTime(loginTime);
             log.setUserId(user.getId());
             logService.insert(log);
-            return "index";
+            return "redirect:/web/index";
         } else {
             return "login";
         }

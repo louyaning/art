@@ -31,8 +31,8 @@
        <li class="admin-parent">
        <a class="am-cf" data-am-collapse="{target: '#collapse-nav2'}"><span class="am-icon-file"></span>课件管理<span class="am-icon-angle-right am-fr am-margin-right"></span></a>
         <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav2">
-          <li><a href="${ctx}/user/toadd" class="am-cf"><span class="am-icon-check"></span> 新增课件<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
-          <li><a href="${ctx}/user/users"><span class="am-icon-puzzle-piece"></span>课件查看</a></li>
+          <li><a href="${ctx}/courseware/toadd" class="am-cf"><span class="am-icon-check"></span> 新增课件<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
+          <li><a href="${ctx}/courseware/coursewares"><span class="am-icon-puzzle-piece"></span>课件查看</a></li>
          
         </ul>
       </li>

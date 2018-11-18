@@ -1,6 +1,7 @@
 package com.team.art.entity.course;
 
 import java.util.Date;
+import java.util.List;
 
 public class Course {
     private Integer id;
@@ -20,7 +21,18 @@ public class Course {
     private Date modifyDatetime;
 
     private Integer isDelete;
-
+    
+    //用于封装子目录的课程
+    private List<Course> courses;
+    
+    public void setCourses(List<Course> courses) {
+		this.courses = courses;
+	}
+    
+    public List<Course> getCourses() {
+		return courses;
+	}
+    
     public Integer getId() {
         return id;
     }
@@ -92,4 +104,12 @@ public class Course {
     public void setIsDelete(Integer isDelete) {
         this.isDelete = isDelete;
     }
+
+	@Override
+	public String toString() {
+		return "Course [id=" + id + ", courseName=" + courseName + ", cover=" + cover + ", weight=" + weight + ", pid="
+				+ pid + ", pName=" + pName + ", createDatetime=" + createDatetime + ", modifyDatetime=" + modifyDatetime
+				+ ", isDelete=" + isDelete + ", courses=" + courses + "]";
+	}
+   
 }

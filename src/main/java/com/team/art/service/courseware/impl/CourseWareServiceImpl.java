@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.team.art.entity.course.Course;
 import com.team.art.entity.courseware.CourseWare;
 import com.team.art.mapper.courseware.CourseWareMapper;
 import com.team.art.service.courseware.CourseWareService;
@@ -16,8 +17,8 @@ public class CourseWareServiceImpl implements CourseWareService {
     private CourseWareMapper courseWareMapper;
 
     @Override
-    public List<CourseWare> listAllCourses(CourseWare course) {
-        List<CourseWare> courseWare = courseWareMapper.listAllCourses(course);
+    public List<CourseWare> listAllCoursesWare(CourseWare course) {
+        List<CourseWare> courseWare = courseWareMapper.listAllCoursesWare(course);
         return courseWare;
     }
 
@@ -44,4 +45,11 @@ public class CourseWareServiceImpl implements CourseWareService {
         int result = courseWareMapper.updateByDelete(id);
         return result;
     }
+
+	@Override
+	public List<CourseWare> listCoursesWareByBranch(CourseWare courseWare) {
+		List<CourseWare> listCoursesWareByBranch = courseWareMapper.listCoursesWareByBranch(courseWare);
+		return listCoursesWareByBranch;
+	}
+   
 }

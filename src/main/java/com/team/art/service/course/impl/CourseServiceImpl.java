@@ -45,4 +45,10 @@ public class CourseServiceImpl implements CourseService {
         return result;
     }
 
+	@Override
+	public List<Course> listCoursesByPid(Integer pid) {
+		List<Course> courses = courseMapper.listCoursesByPid(pid);
+		return courses;
+	}
+
 }

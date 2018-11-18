@@ -109,7 +109,15 @@ public class CourseWare {
         return weight;
     }
 
-    public void setWeight(Integer weight) {
+    @Override
+	public String toString() {
+		return "CourseWare [id=" + id + ", courseId=" + courseId + ", wareName=" + wareName + ", wareUrl=" + wareUrl
+				+ ", createDatetime=" + createDatetime + ", modifyDatetime=" + modifyDatetime + ", isDelete=" + isDelete
+				+ ", desc=" + desc + ", branch=" + branch + ", suffix=" + suffix + ", weight=" + weight + "]";
+	}
+
+	public void setWeight(Integer weight) {
         this.weight = weight;
     }
+    
 }

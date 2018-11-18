@@ -2,6 +2,7 @@ package com.team.art.mapper.courseware;
 
 import java.util.List;
 
+import com.team.art.entity.course.Course;
 import com.team.art.entity.courseware.CourseWare;
 
 public interface CourseWareMapper {
@@ -17,7 +18,9 @@ public interface CourseWareMapper {
 
     int updateByPrimaryKey(CourseWare record);
 
-    List<CourseWare> listAllCourses(CourseWare courseWare);
+    List<CourseWare> listAllCoursesWare(CourseWare courseWare);
+    List<CourseWare> listCoursesWareByBranch(CourseWare courseWare);
+    
 
     int updateByDelete(Integer id);
 }

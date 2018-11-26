@@ -6,4 +6,6 @@ import com.team.art.entity.age.Age;
 
 public interface AgeService {
     List<Age> selectAges();
+
+    int insertSelective(Age record);
 }

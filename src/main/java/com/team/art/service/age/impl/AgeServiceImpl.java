@@ -20,4 +20,10 @@ public class AgeServiceImpl implements AgeService {
         return ageMapper.selectAges();
     }
 
+    @Override
+    public int insertSelective(Age record) {
+        int age = ageMapper.insertSelective(record);
+        return age;
+    }
+
 }

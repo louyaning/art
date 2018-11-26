@@ -45,6 +45,13 @@
         </ul>
       </li> 
       
+      <li class="admin-parent">
+       <a class="am-cf" data-am-collapse="{target: '#collapse-nav3'}"><span class="am-icon-file"></span>年龄管理<span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+        <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav3">
+          <li><a href="${ctx}/age/toadd" class="am-cf"><span class="am-icon-check"></span> 新增年龄<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
+        </ul>
+      </li> 
+      
       <li><a href="#"><span class="am-icon-pencil-square-o"></span> 表单</a></li>
       <li><a href="#"><span class="am-icon-sign-out"></span> 注销</a></li>
     </ul>

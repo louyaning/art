@@ -88,6 +88,8 @@
 
       <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
         <form id="pageForm" class="am-form am-form-horizontal" action="${ctx}/course/add" method="post" autocomplete="off">
+        <input type="text" name="ids" id="ids">
+        
           <div class="am-form-group">
             <label for="user-name" class="am-u-sm-3 am-form-label">课程名: </label>
              <!--   <select style=width:70%  class="form-control"  id="selectReapyCode"  validata-options="validType:'Require',msg:'不能为空'">
@@ -107,7 +109,7 @@
             
             <c:forEach items="${ages}" var="ag" varStatus="index">
               <label class="am-btn am-btn-default am-btn-xs">
-                <input type="checkbox" class="age">
+                <input type="checkbox" name="age" value="${ag.age}">
 							${ag.age}
               </label>
              </c:forEach>
@@ -154,14 +156,20 @@
 <script type="text/javascript">
 
 $("#save").click(function() {
-	
+	var str = "";  
+    $("input[name='age']").each(function(){  
+        if($(this).is(":checked"))  
+        {  
+            str += "_" + $(this).val();  
+        }  
+    });  
+    $("#ids").val(str);
     $("#pageForm").submit();
 })
 
 
 $(document).ready(function(){
 	var value= $('#selectCourse  option:selected').val();
-	alert("sss");
      $.ajax({
         contentType : "application/json;charset=utf-8",
         type : "POST",

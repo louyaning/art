@@ -146,7 +146,7 @@
     <include refid="Base_Column_List" />
     from course 
     where
-    is_delete=1 
+    is_delete=1  and  pid=0
     order by id desc
   </select>
   

@@ -23,6 +23,8 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public int insertSelective(Course record) {
+        record.setPid(0);
+        record.setpName("根目录");
         int result = courseMapper.insertSelective(record);
         return result;
     }
@@ -45,10 +47,16 @@ public class CourseServiceImpl implements CourseService {
         return result;
     }
 
-	@Override
-	public List<Course> listCoursesByPid(Integer pid) {
-		List<Course> courses = courseMapper.listCoursesByPid(pid);
-		return courses;
-	}
+    @Override
+    public List<Course> listCoursesByPid(Integer pid) {
+        List<Course> courses = courseMapper.listCoursesByPid(pid);
+        return courses;
+    }
+
+    @Override
+    public List<Course> selectCourse() {
+        List<Course> courses = courseMapper.selectCourse();
+        return courses;
+    }
 
 }

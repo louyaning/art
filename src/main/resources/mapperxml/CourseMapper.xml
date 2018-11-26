@@ -149,6 +149,7 @@
     is_delete=1 
     order by id desc
   </select>
+  
   <!-- 父课程与子课程关联方法 -->
    <select id="listCoursesByPid" resultMap="BaseResultMap" parameterType="java.lang.Integer">
     select
@@ -160,7 +161,16 @@
     pid = #{pid}
     order by weight desc
   </select>
-  
+  <select id="selectCourse" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from course 
+    where
+    is_delete=1
+    and
+    pid = 0
+    order by weight desc
+  </select>
   <!--   逻辑删除 -->
    <update id="updateByDelete" parameterType="java.lang.Integer" >
     update course

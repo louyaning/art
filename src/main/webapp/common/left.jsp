@@ -25,7 +25,7 @@
         <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav1">
           <li><a href="${ctx}/course/toadd" class="am-cf"><span class="am-icon-check"></span> 新增课程<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
           <li><a href="${ctx}/course/courses"><span class="am-icon-puzzle-piece"></span> 课程列表</a></li>
-         
+          <li><a href="${ctx}/course/toDistribution"><span class="am-icon-puzzle-piece"></span> 课程分配</a></li>
         </ul>
       </li>
        <li class="admin-parent">

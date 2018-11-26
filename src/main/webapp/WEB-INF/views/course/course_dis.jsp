@@ -37,7 +37,7 @@
 <!-- content start -->
   <div class="admin-content">
     <div class="am-cf am-padding">
-      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">课程资料</strong> / <small>Teacher information</small></div>
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">课程分配</strong> / <small>Teacher information</small></div>
     </div>
 
     <hr/>
@@ -87,26 +87,44 @@
       </div>
 
       <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
-      
-      
         <form id="pageForm" class="am-form am-form-horizontal" action="${ctx}/course/add" method="post" autocomplete="off">
           <div class="am-form-group">
-            <label for="user-name" class="am-u-sm-3 am-form-label">课程名 </label>
-            <div class="am-u-sm-9">
-              <input type="text" id="user-name" name="courseName" placeholder="课程名">
-             <!--  <small>账号</small> -->
+            <label for="user-name" class="am-u-sm-3 am-form-label">课程名: </label>
+             <!--   <select style=width:70%  class="form-control"  id="selectReapyCode"  validata-options="validType:'Require',msg:'不能为空'">
+                                        <option value="" >请选择</option>  
+              </select>  -->
+               <div class="am-form-group am-margin-left am-fl">
+              <select  id="selectCourse" name="choicedCourseId">
+                <option value="">选择课程</option>
+              </select>
             </div>
           </div>
          
           <div class="am-form-group">
-            <label for="user-email" class="am-u-sm-3 am-form-label">图标</label>
-            <div class="am-u-sm-9">
-              <input type="text" id="user-email" name="cover"  placeholder="图标">
+          <div class="am-u-sm-3 am-text-right">适用年龄:</div>
+          <div class="am-form-group">
+            <div class="am-btn-group" data-am-button>
+              <label class="am-btn am-btn-default am-btn-xs">
+                <input type="checkbox"> 三岁
+              </label>
+              <label class="am-btn am-btn-default am-btn-xs">
+                <input type="checkbox"> 四岁
+              </label>
+              <label class="am-btn am-btn-default am-btn-xs">
+                <input type="checkbox"> 五岁
+              </label>
+              <label class="am-btn am-btn-default am-btn-xs">
+                <input type="checkbox"> 六岁
+              </label>
+              <label class="am-btn am-btn-default am-btn-xs">
+                <input type="checkbox"> 七岁
+              </label>
             </div>
           </div>
+        </div>
           
            <div class="am-form-group">
-            <label for="user-email" class="am-u-sm-3 am-form-label">权重 </label>
+            <label for="user-email" class="am-u-sm-3 am-form-label">权重: </label>
             <div class="am-u-sm-9">
               <input type="text" id="user-email" name="weight"  placeholder="权重 ">
             </div>
@@ -136,17 +154,34 @@
 <script src="assets/js/amazeui.legacy.js"></script>
 <![endif]-->
 
-<!--[if (gte IE 9)|!(IE)]><!-->
+
 <script src="../assets/js/jquery.min.js"></script>
 <script src="../assets/js/amazeui.min.js"></script>
-<!--<![endif]-->
+<script src="../assets/js/jquery-2.1.4.min.js"></script>
 <script src="../assets/js/app.js"></script>
 <script type="text/javascript">
 
 $("#save").click(function() {
     $("#pageForm").submit();
 })
-$("#pageForm").checkForm(); 
+
+
+$(document).ready(function(){
+	var value= $('#selectCourse  option:selected').val();
+	alert("sss");
+     $.ajax({
+        contentType : "application/json;charset=utf-8",
+        type : "POST",
+        url : "${ctx}/course/selectCourse",
+        dataType : "json",
+        success : function(data) {
+            $.each(data, function(i,courses) {
+                $('#selectCourse').append(
+                        $('<option>').text(courses.courseName).attr('value',courses.id));
+            });
+        }
+    });
+});
 
 </script>
 </body>

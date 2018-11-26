@@ -3,11 +3,16 @@ package com.team.art.controller.course;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageHelper;
@@ -39,6 +44,16 @@ public class CourseController {
     @RequestMapping("/toadd")
     public String toAdd() {
         return "course/course_add";
+    }
+
+    /**
+     * 给课程分配下一级的年龄菜单，这是第一步，跳到分配页面
+     * 
+     * @return
+     */
+    @RequestMapping("/toDistribution")
+    public String toDistribution() {
+        return "course/course_dis";
     }
 
     @RequestMapping("/add")
@@ -80,5 +95,12 @@ public class CourseController {
         } else {
             return "删除失败";
         }
+    }
+
+    @RequestMapping(value = "/selectCourse", method = RequestMethod.POST)
+    @ResponseBody
+    public List<Course> selectCourse(HttpServletRequest request, HttpServletResponse response) {
+        List<Course> courses = courseService.selectCourse();
+        return courses;
     }
 }

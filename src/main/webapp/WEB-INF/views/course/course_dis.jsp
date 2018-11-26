@@ -87,9 +87,9 @@
       </div>
 
       <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
-        <form id="pageForm" class="am-form am-form-horizontal" action="${ctx}/course/add" method="post" autocomplete="off">
-        <input type="text" name="ids" id="ids">
-        
+        <form id="pageForm" class="am-form am-form-horizontal" action="${ctx}/course/addKids" method="post" autocomplete="off">
+        <input type="hidden" name="ids" id="ids">
+        <input type="hidden" name="courseId" id="courseId">
           <div class="am-form-group">
             <label for="user-name" class="am-u-sm-3 am-form-label">课程名: </label>
              <!--   <select style=width:70%  class="form-control"  id="selectReapyCode"  validata-options="validType:'Require',msg:'不能为空'">
@@ -160,16 +160,18 @@ $("#save").click(function() {
     $("input[name='age']").each(function(){  
         if($(this).is(":checked"))  
         {  
-            str += "_" + $(this).val();  
+            str += "," + $(this).val();  
         }  
     });  
+    var value= $('#selectCourse  option:selected').val();
     $("#ids").val(str);
+    $("#courseId").val(value);
     $("#pageForm").submit();
+    
 })
 
 
 $(document).ready(function(){
-	var value= $('#selectCourse  option:selected').val();
      $.ajax({
         contentType : "application/json;charset=utf-8",
         type : "POST",

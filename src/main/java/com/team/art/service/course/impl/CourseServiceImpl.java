@@ -30,6 +30,12 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    public int insertSelectives(Course record) {
+        int result = courseMapper.insertSelective(record);
+        return result;
+    }
+
+    @Override
     public int updateByPrimaryKeySelective(Course course) {
         int result = courseMapper.updateByPrimaryKeySelective(course);
         return result;

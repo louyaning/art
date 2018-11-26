@@ -11,6 +11,8 @@ public interface CourseService {
 
     int insertSelective(Course course);
 
+    int insertSelectives(Course course);
+
     int updateByPrimaryKeySelective(Course course);
 
     Course selectById(Integer id);

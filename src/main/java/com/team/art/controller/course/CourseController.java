@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -107,5 +108,27 @@ public class CourseController {
     public List<Course> selectCourse(HttpServletRequest request, HttpServletResponse response) {
         List<Course> courses = courseService.selectCourse();
         return courses;
+    }
+
+    @RequestMapping("/addKids")
+    public String insertCourse(HttpServletRequest request, RedirectAttributes redirectAttributes) {
+        String names = request.getParameter("ids");
+        String courseId = request.getParameter("courseId");
+        String weight = request.getParameter("weight");
+        Date createDatetime = new Date();
+        for (String name : names.split(",")) {
+            if (!"".equals(name)) {
+                Course course = new Course();
+                course.setCourseName(name);
+                course.setPid(Integer.valueOf(courseId));
+                Course parent = courseService.selectById(Integer.valueOf(courseId));
+                course.setWeight(Integer.valueOf(weight));
+                course.setpName(parent.getCourseName());
+                course.setCreateDatetime(createDatetime);
+                course.setIsDelete(1);
+                courseService.insertSelectives(course);
+            }
+        }
+        return "redirect:courses";
     }
 }

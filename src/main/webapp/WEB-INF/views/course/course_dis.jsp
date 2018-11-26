@@ -107,7 +107,7 @@
             
             <c:forEach items="${ages}" var="ag" varStatus="index">
               <label class="am-btn am-btn-default am-btn-xs">
-                <input type="checkbox">
+                <input type="checkbox" class="age">
 							${ag.age}
               </label>
              </c:forEach>
@@ -154,6 +154,7 @@
 <script type="text/javascript">
 
 $("#save").click(function() {
+	
     $("#pageForm").submit();
 })
 

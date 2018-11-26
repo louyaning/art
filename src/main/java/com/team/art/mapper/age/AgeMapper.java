@@ -1,5 +1,7 @@
 package com.team.art.mapper.age;
 
+import java.util.List;
+
 import com.team.art.entity.age.Age;
 
 public interface AgeMapper {
@@ -8,6 +10,8 @@ public interface AgeMapper {
     int insert(Age record);
 
     int insertSelective(Age record);
+
+    List<Age> selectAges();
 
     Age selectByPrimaryKey(Integer id);
 

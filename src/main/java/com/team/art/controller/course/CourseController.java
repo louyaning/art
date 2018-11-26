@@ -17,7 +17,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.team.art.entity.age.Age;
 import com.team.art.entity.course.Course;
+import com.team.art.service.age.AgeService;
 import com.team.art.service.course.CourseService;
 
 @Controller
@@ -25,6 +27,8 @@ import com.team.art.service.course.CourseService;
 public class CourseController {
     @Autowired
     private CourseService courseService;
+    @Autowired
+    private AgeService    ageService;
 
     @RequestMapping("/courses")
     public String SearchPage(@RequestParam(value = "pn", defaultValue = "1") Integer pn,
@@ -52,8 +56,9 @@ public class CourseController {
      * @return
      */
     @RequestMapping("/toDistribution")
-    public String toDistribution() {
-        return "course/course_dis";
+    public ModelAndView toDistribution() {
+        List<Age> ages = ageService.selectAges();
+        return new ModelAndView("course/course_dis").addObject("ages", ages);
     }
 
     @RequestMapping("/add")

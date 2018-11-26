@@ -103,22 +103,14 @@
           <div class="am-form-group">
           <div class="am-u-sm-3 am-text-right">适用年龄:</div>
           <div class="am-form-group">
-            <div class="am-btn-group" data-am-button>
+            <div class="am-btn-group" data-am-button id="ages">
+            
+            <c:forEach items="${ages}" var="ag" varStatus="index">
               <label class="am-btn am-btn-default am-btn-xs">
-                <input type="checkbox"> 三岁
+                <input type="checkbox">
+							${ag.age}
               </label>
-              <label class="am-btn am-btn-default am-btn-xs">
-                <input type="checkbox"> 四岁
-              </label>
-              <label class="am-btn am-btn-default am-btn-xs">
-                <input type="checkbox"> 五岁
-              </label>
-              <label class="am-btn am-btn-default am-btn-xs">
-                <input type="checkbox"> 六岁
-              </label>
-              <label class="am-btn am-btn-default am-btn-xs">
-                <input type="checkbox"> 七岁
-              </label>
+             </c:forEach>
             </div>
           </div>
         </div>

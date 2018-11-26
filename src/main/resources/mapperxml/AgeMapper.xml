@@ -14,11 +14,18 @@
     from age
     where id = #{id,jdbcType=INTEGER}
   </select>
+  
+   <select id="selectAges" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from age
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from age
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.myself.demo.Age" >
+  <insert id="insert" parameterType="com.team.art.entity.age.Age" >
     insert into age (id, age)
     values (#{id,jdbcType=INTEGER}, #{age,jdbcType=VARCHAR})
   </insert>

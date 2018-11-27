@@ -24,4 +24,6 @@ public interface CourseMapper {
     List<Course> listCoursesByPid(Integer pid);
 
     List<Course> selectCourse();
+	
+	List<Course> selectCourseAges(Integer pid);
 }

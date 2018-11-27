@@ -64,5 +64,12 @@ public class CourseServiceImpl implements CourseService {
         List<Course> courses = courseMapper.selectCourse();
         return courses;
     }
+	
+	@Override
+    public List<Course> selectCourseAges(Integer pid) {
+        List<Course> courses = courseMapper.selectCourseAges(pid);
+        return courses;
+    }
+	
 
 }

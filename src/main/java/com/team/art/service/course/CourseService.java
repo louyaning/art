@@ -20,4 +20,6 @@ public interface CourseService {
     int updateByDelete(Integer id);
 
     List<Course> selectCourse();
+	
+	List<Course> selectCourseAges(Integer pid);
 }

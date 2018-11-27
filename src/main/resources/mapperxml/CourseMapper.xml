@@ -178,4 +178,24 @@
       is_delete = 2
     where id = #{id,jdbcType=INTEGER}
   </update>
+   <select id="selectCourseAges" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from course 
+    where
+    is_delete=1
+    and
+    pid = #{pid}
+    order by weight desc
+  </select>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 </mapper>

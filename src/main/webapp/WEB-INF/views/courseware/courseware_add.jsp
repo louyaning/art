@@ -37,7 +37,7 @@
 <!-- content start -->
   <div class="admin-content">
     <div class="am-cf am-padding">
-      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">老师资料</strong> / <small>Teacher information</small></div>
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">课件上传</strong> / <small>CourseWar information</small></div>
     </div>
 
     <hr/>
@@ -87,32 +87,55 @@
       </div>
 
       <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
-      
-      
-        <form id="pageForm" class="am-form am-form-horizontal" action="${ctx}/courseware/add" method="post" autocomplete="off">
+        <form id="pageForm" class="am-form am-form-horizontal" action="${ctx}/courseware/addWars" method="post" autocomplete="off">
+        <input type="hidden" name="ids" id="ids">
+        <input type="hidden" name="courseId" id="courseId">
           <div class="am-form-group">
-            <label for="user-name" class="am-u-sm-3 am-form-label">课件名 </label>
-            <div class="am-u-sm-9">
-              <input type="text" id="user-name" name="wareName" placeholder="姓名 / Name">
-             <!--  <small>账号</small> -->
+            <label for="user-name" class="am-u-sm-3 am-form-label">课程名: </label>
+               <div class="am-form-group am-margin-left am-fl">
+              <select  id="selectCourse" name="choicedCourseId">
+                <option value="">选择课程</option>
+              </select>
             </div>
           </div>
          
+         <div class="am-form-group">
+          <div class="am-u-sm-3 am-text-right">选择年龄:</div>
           <div class="am-form-group">
-            <label for="user-email" class="am-u-sm-3 am-form-label">描述</label>
-            <div class="am-u-sm-9">
-              <input type="text" id="user-email" name="desc"  placeholder="输入密码 ">
+            <div class="am-btn-group" data-am-button id="ages">
+              <%-- <label class="am-btn am-btn-default am-btn-xs">
+                <input type="checkbox" name="age" value="${ag.id}">
+							${ag.courseName}
+              </label> --%>
             </div>
           </div>
-          
-           <div class="am-form-group">
-            <label for="user-email" class="am-u-sm-3 am-form-label">权重 </label>
+         </div>
+         
+         <div class="am-form-group">
+            <label for="user-email" class="am-u-sm-3 am-form-label">选择课件: </label>
             <div class="am-u-sm-9">
-              <input type="text" id="user-email" name="weight"  placeholder="输入手机号 ">
+              <input type="file" id="user-pic" multiple="multiple" name="file">
+                    <p class="am-form-help">请选择要上传的文件...</p>
+            </div>
+         </div>
+          
+          
+          <div class="am-form-group">
+            <label for="user-email" class="am-u-sm-3 am-form-label">课件描述: </label>
+            <div class="am-u-sm-9">
+              <input type="text" id="user-email" name="desc"  placeholder="课件描述 ">
+            </div>
+          </div>
+		 
+           <div class="am-form-group">
+            <label for="user-email" class="am-u-sm-3 am-form-label">权重: </label>
+            <div class="am-u-sm-9">
+              <input type="text" id="user-email" name="weight"  placeholder="权重 ">
             </div>
           </div>
           
 
+		  
           <div class="am-form-group">
             <div class="am-u-sm-9 am-u-sm-push-3">
               <button id="save" type="button" class="am-btn am-btn-primary">保存</button>
@@ -136,18 +159,69 @@
 <script src="assets/js/amazeui.legacy.js"></script>
 <![endif]-->
 
-<!--[if (gte IE 9)|!(IE)]><!-->
+
 <script src="../assets/js/jquery.min.js"></script>
 <script src="../assets/js/amazeui.min.js"></script>
-<!--<![endif]-->
+<script src="../assets/js/jquery-2.1.4.min.js"></script>
 <script src="../assets/js/app.js"></script>
 <script type="text/javascript">
 
 $("#save").click(function() {
+	var str = "";  
+    $("input[name='age']").each(function(){  
+        if($(this).is(":checked"))  
+        {  
+            str +=$(this).val();  
+        }  
+    });  
+    var value= $('#selectCourse  option:selected').val();
+    //课程id  例如审美  山水
+    $("#ids").val(str);
+    //课程id   例如 三岁    四岁
+    $("#courseId").val(value);
+    //文件  file
     $("#pageForm").submit();
+    
 })
-$("#pageForm").checkForm(); 
 
+
+$(document).ready(function(){
+     $.ajax({
+        contentType : "application/json;charset=utf-8",
+        type : "POST",
+        url : "${ctx}/course/selectCourse",
+        dataType : "json",
+        success : function(data) {
+            $.each(data, function(i,courses) {
+                $('#selectCourse').append(
+                        $('<option>').text(courses.courseName).attr('value',courses.id)
+                        );
+            });
+        }
+    });
+});
+
+
+ $("#selectCourse").change(function(){
+    	 var pid= $('#selectCourse  option:selected').val();
+    	 $('#ages').empty();
+         $.ajax({
+            contentType : "application/json;charset=utf-8",
+            type : "POST",
+            url : "${ctx}/courseware/toloadAge/"+pid+"",
+            dataType : "json",
+            success : function(data) {
+            	$.each(data, function(i,courses) {
+                    $('#ages').append(
+                    		 "<label class='am-btn am-btn-default am-btn-xs'>"+
+                             "<input type='radio' class='useages' name='age' value='+courses.id+'>"
+            							+courses.courseName+
+                             "</label>"
+                    		 ); 
+                });
+        }
+    });
+ });
 </script>
 </body>
 </html>

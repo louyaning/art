@@ -1,7 +1,10 @@
 package com.team.art.controller.courseware;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -75,11 +78,39 @@ public class CourseWareController {
     @RequestMapping("/addWars")
     public String addWares(HttpServletRequest request,
                            @RequestParam(value = "file") MultipartFile file,
-                           RedirectAttributes redirectAttributes) {
-        String names = request.getParameter("ids");
+                           RedirectAttributes redirectAttributes) throws IOException {
+        String id = request.getParameter("id");
         String courseId = request.getParameter("courseId");
         String weight = request.getParameter("weight");
+        String desc = request.getParameter("desc");
         Date createDatetime = new Date();
+        CourseWare courseWar = new CourseWare();
+        if (!file.isEmpty()) {
+            //以下的代码是将文件file重新命名并存入Tomcat的webapps目录下项目的下级目录fileDir
+            String fileRealName = file.getOriginalFilename(); //获得原始文件名;
+            int pointIndex = fileRealName.indexOf("."); //点号的位置     
+            String fileSuffix = fileRealName.substring(pointIndex); //截取文件后缀
+            UUID FileId = UUID.randomUUID(); //生成文件的前缀包含连字符
+            String savedFileName = FileId.toString().replace("-", "").concat(fileSuffix); //文件存取名
+            String savedDir = request.getSession().getServletContext().getRealPath("fileDir"); //获取服务器指定文件存取路径  
+            File savedFile = new File(savedDir, savedFileName);
+
+            //保存到数据库
+            courseWar.setCreateDatetime(createDatetime);
+            courseWar.setCourseId(Integer.valueOf(id));
+            courseWar.setIsDelete(1);
+            courseWar.setDesc(desc);
+            courseWar.setBranch(Integer.valueOf(courseId));
+            courseWar.setWareName(savedFileName);
+            courseWar.setWareUrl(savedDir);
+            courseWar.setSuffix(fileSuffix);
+
+            boolean isCreateSuccess = savedFile.createNewFile();
+            courseWareService.insertSelective(courseWar);
+            if (isCreateSuccess) {
+                file.transferTo(savedFile); //转存文件
+            }
+        }
         return "注册失败";
     }
 

@@ -88,7 +88,7 @@
 
       <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
         <form id="pageForm" class="am-form am-form-horizontal" action="${ctx}/courseware/addWars" method="post" autocomplete="off">
-        <input type="hidden" name="ids" id="ids">
+        <input type="hidden" name="id" id="id">
         <input type="hidden" name="courseId" id="courseId">
           <div class="am-form-group">
             <label for="user-name" class="am-u-sm-3 am-form-label">课程名: </label>
@@ -176,7 +176,7 @@ $("#save").click(function() {
     });  
     var value= $('#selectCourse  option:selected').val();
     //课程id  例如审美  山水
-    $("#ids").val(str);
+    $("#id").val(str);
     //课程id   例如 三岁    四岁
     $("#courseId").val(value);
     //文件  file

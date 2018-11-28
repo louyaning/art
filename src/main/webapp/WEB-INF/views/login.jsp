@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/common/taglibs.jsp"%>
+<%@ include file="/common/messages.jsp"%>
 <html>
 <head lang="en">
   <meta charset="UTF-8">

@@ -1,5 +1,6 @@
 package com.team.art.controller.user;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -20,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.team.art.controller.DemoController;
+import com.team.art.controller.base.BaseController;
 import com.team.art.entity.log.Log;
 import com.team.art.entity.user.User;
 import com.team.art.service.log.LogService;
@@ -31,7 +33,7 @@ import com.team.art.util.SessionUtil;
  */
 @Controller
 @RequestMapping("/user")
-public class UserController {
+public class UserController extends BaseController {
     private static final Logger logger = LoggerFactory.getLogger(DemoController.class);
 
     @Autowired
@@ -40,7 +42,8 @@ public class UserController {
     private LogService          logService;
 
     @RequestMapping("/login")
-    public String login(HttpServletRequest request, RedirectAttributes redirectAttributes) {
+    public String login(HttpServletRequest request, HttpServletResponse response,
+                        RedirectAttributes redirectAttributes) throws IOException {
 
         User user = userService.selectByNameAndPassword(request.getParameter("username"),
             request.getParameter("password"));
@@ -53,8 +56,10 @@ public class UserController {
             log.setLoginTime(loginTime);
             log.setUserId(user.getId());
             logService.insert(log);
+            saveMessage(redirectAttributes, "用户名或密码错误");
             return "redirect:/web/index";
         } else {
+            saveMessage(redirectAttributes, "用户名或密码错误");
             return "login";
         }
     }

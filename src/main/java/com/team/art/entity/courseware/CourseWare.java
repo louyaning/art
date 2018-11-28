@@ -7,21 +7,25 @@ public class CourseWare {
 
     private Integer courseId;
 
-    private String wareName;
+    private String  wareName;
 
-    private String wareUrl;
+    private String  realName;
 
-    private Date createDatetime;
+    private String  wareUrl;
 
-    private Date modifyDatetime;
+    private Date    createDatetime;
+
+    private Date    modifyDatetime;
 
     private Integer isDelete;
 
-    private String desc;
+    private String  desc;
 
     private Integer branch;
 
-    private String suffix;
+    private String  branchName;
+
+    private String  suffix;
 
     private Integer weight;
 
@@ -109,15 +113,32 @@ public class CourseWare {
         return weight;
     }
 
-    @Override
-	public String toString() {
-		return "CourseWare [id=" + id + ", courseId=" + courseId + ", wareName=" + wareName + ", wareUrl=" + wareUrl
-				+ ", createDatetime=" + createDatetime + ", modifyDatetime=" + modifyDatetime + ", isDelete=" + isDelete
-				+ ", desc=" + desc + ", branch=" + branch + ", suffix=" + suffix + ", weight=" + weight + "]";
-	}
+    public String getRealName() {
+        return realName;
+    }
 
-	public void setWeight(Integer weight) {
+    public void setRealName(String realName) {
+        this.realName = realName;
+    }
+
+    public String getBranchName() {
+        return branchName;
+    }
+
+    public void setBranchName(String branchName) {
+        this.branchName = branchName;
+    }
+
+    @Override
+    public String toString() {
+        return "CourseWare [id=" + id + ", courseId=" + courseId + ", wareName=" + wareName
+               + ", wareUrl=" + wareUrl + ", createDatetime=" + createDatetime + ", modifyDatetime="
+               + modifyDatetime + ", isDelete=" + isDelete + ", desc=" + desc + ", branch=" + branch
+               + ", suffix=" + suffix + ", weight=" + weight + "]";
+    }
+
+    public void setWeight(Integer weight) {
         this.weight = weight;
     }
-    
+
 }

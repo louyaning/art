@@ -76,6 +76,7 @@
                                  <tr>
                                     <th >课件编号</th>
                                     <th >课件名称</th>
+                                    <th >课件存储名称</th>
                                     <th >描述</th>
                                     <th >权重</th>
                                     <th >课程</th>
@@ -90,6 +91,9 @@
                                                ${ele.id}
                                         </td>
                                         <td>
+                                               ${ele.realName}
+                                        </td>
+                                        <td>
                                                ${ele.wareName}
                                         </td>
                                         <td>
@@ -99,14 +103,14 @@
                                                ${ele.weight}
                                         </td>
                                         <td>
-                                               ${ele.branch}
+                                               ${ele.branchName}
                                         </td>
                                        
                                         <td >
                                          <div class="am-btn-toolbar">
                                            <div class="am-btn-group am-btn-group-xs">
-                                            <a style="color: #7A67EE" class="am-btn am-btn-default am-btn-xs am-text-secondary" href="${ctx }/course/toUpdate?id=${ele.id}"><span class="am-icon-pencil-square-o"></span>编辑</a>
-                                            <a style="color: #FF4500" class="am-btn am-btn-default am-btn-xs am-text-danger" href="${ctx}/course/delete?id=${ele.id}"><span class="am-icon-trash-o"></span> 删除</a> 
+                                            <a style="color: #7A67EE" class="am-btn am-btn-default am-btn-xs am-text-secondary" href="${ctx }/courseware/toUpdate?id=${ele.id}"><span class="am-icon-pencil-square-o"></span>编辑</a>
+                                            <a style="color: #FF4500" class="am-btn am-btn-default am-btn-xs am-text-danger" href="${ctx}/courseware/delete?id=${ele.id}"><span class="am-icon-trash-o"></span> 删除</a> 
                                           </div>
                                           </div>
                                         </td>

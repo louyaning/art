@@ -37,7 +37,7 @@
 <!-- content start -->
   <div class="admin-content">
     <div class="am-cf am-padding">
-      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">老师资料修改</strong> / <small>Teacher information</small></div>
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">课件资料修改</strong> / <small>Courseware information</small></div>
     </div>
 
     <hr/>
@@ -89,27 +89,27 @@
       <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
       
       
-        <form id="pageForm" class="am-form am-form-horizontal" action="${ctx}/course/update" method="post" autocomplete="off">
-        <input type="hidden" name="id" value="${course.id}">
+        <form id="pageForm" class="am-form am-form-horizontal" action="${ctx}/courseware/update" method="post" autocomplete="off">
+        <input type="hidden" name="id" value="${courseware.id}">
           <div class="am-form-group">
-            <label for="user-name" class="am-u-sm-3 am-form-label">课程名 </label>
+            <label for="user-name" class="am-u-sm-3 am-form-label">课件名称 </label>
             <div class="am-u-sm-9">
-              <input type="text" id="user-name" name="courseName" placeholder="姓名 / Name" value="${course.courseName}">
+              <input type="text" id="user-name" name="realName" placeholder="姓名 / Name" value="${courseware.realName}">
              <!--  <small>账号</small> -->
             </div>
           </div>
          
           <div class="am-form-group">
-            <label for="user-email" class="am-u-sm-3 am-form-label">图标 </label>
+            <label for="user-email" class="am-u-sm-3 am-form-label">描述</label>
             <div class="am-u-sm-9">
-              <input type="password" id="user-email" name="cover"  placeholder="输入密码 " value="${course.cover}">
+              <input type="text" id="user-email" name="desc"  placeholder="描述 " value="${courseware.desc}">
             </div>
           </div>
           
            <div class="am-form-group">
             <label for="user-email" class="am-u-sm-3 am-form-label">权重 </label>
             <div class="am-u-sm-9">
-              <input type="text" id="user-email" name="weight"  placeholder="输入手机号 " value="${course.weight}">
+              <input type="text" id="user-email" name="weight"  placeholder="权重  " value="${courseware.weight}">
             </div>
           </div>
           

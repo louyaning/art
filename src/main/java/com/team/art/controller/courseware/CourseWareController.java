@@ -2,6 +2,7 @@ package com.team.art.controller.courseware;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -40,14 +41,20 @@ public class CourseWareController {
                              Model model, CourseWare courseware) {
         //使用分页插件
         PageHelper.startPage(pn, 5);
-        List<CourseWare> courseWare = courseWareService.listAllCoursesWare(courseware);
+        List<CourseWare> courseWares = courseWareService.listAllCoursesWare(courseware);
         //使用PageInfo包装查询后的结果，只需要将PageInfo交个页面就好了
         //可传入连续显示的页数
+        List<CourseWare> courseWare = new ArrayList<CourseWare>();
+        for (CourseWare coursewar : courseWares) {
+            Course course = courseService.selectById(coursewar.getBranch());
+            coursewar.setBranchName(course.getCourseName());
+            courseWare.add(coursewar);
+        }
         PageInfo page = new PageInfo(courseWare, 8);
+
         model.addAttribute("pageInfo", page);
 
         return "courseware/courseware_list";//由于视图解析器，会跳转到/WEB-INF/views/目录下
-
     }
 
     @RequestMapping("/toadd")
@@ -94,30 +101,33 @@ public class CourseWareController {
             String savedFileName = FileId.toString().replace("-", "").concat(fileSuffix); //文件存取名
             String savedDir = request.getSession().getServletContext().getRealPath("fileDir"); //获取服务器指定文件存取路径  
             File savedFile = new File(savedDir, savedFileName);
-
             //保存到数据库
             courseWar.setCreateDatetime(createDatetime);
             courseWar.setCourseId(Integer.valueOf(id));
             courseWar.setIsDelete(1);
+            courseWar.setRealName(fileRealName);
+            courseWar.setWeight(Integer.valueOf(weight));
             courseWar.setDesc(desc);
             courseWar.setBranch(Integer.valueOf(courseId));
             courseWar.setWareName(savedFileName);
             courseWar.setWareUrl(savedDir);
             courseWar.setSuffix(fileSuffix);
-
+            if (!savedFile.exists()) {
+                new File(savedDir).mkdirs();
+            }
             boolean isCreateSuccess = savedFile.createNewFile();
             courseWareService.insertSelective(courseWar);
             if (isCreateSuccess) {
                 file.transferTo(savedFile); //转存文件
             }
         }
-        return "注册失败";
+        return "redirect:coursewares";
     }
 
     @RequestMapping("/toUpdate")
     public ModelAndView toUpdate(Integer id) {
-        CourseWare course = courseWareService.selectById(id);
-        return new ModelAndView("courseware/courseware_update").addObject("course", course);
+        CourseWare courseware = courseWareService.selectById(id);
+        return new ModelAndView("courseware/courseware_update").addObject("courseware", courseware);
     }
 
     @RequestMapping("/update")

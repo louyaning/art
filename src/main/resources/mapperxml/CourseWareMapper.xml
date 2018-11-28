@@ -5,6 +5,7 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="course_id" property="courseId" jdbcType="INTEGER" />
     <result column="ware_name" property="wareName" jdbcType="VARCHAR" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
     <result column="ware_url" property="wareUrl" jdbcType="VARCHAR" />
     <result column="create_datetime" property="createDatetime" jdbcType="TIMESTAMP" />
     <result column="modify_datetime" property="modifyDatetime" jdbcType="TIMESTAMP" />
@@ -15,7 +16,7 @@
     <result column="weight" property="weight" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, course_id, ware_name, ware_url, create_datetime, modify_datetime, is_delete, 
+    id, course_id, ware_name, real_name,ware_url, create_datetime, modify_datetime, is_delete, 
     `desc`, branch, suffix, weight
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -29,11 +30,11 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.team.art.entity.courseware.CourseWare" >
-    insert into course_ware (id, course_id, ware_name, 
+    insert into course_ware (id, course_id, ware_name,real_name, 
       ware_url, create_datetime, modify_datetime, 
       is_delete, desc, branch, 
       suffix, weight)
-    values (#{id,jdbcType=INTEGER}, #{courseId,jdbcType=INTEGER}, #{wareName,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{courseId,jdbcType=INTEGER}, #{wareName,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR},
       #{wareUrl,jdbcType=VARCHAR}, #{createDatetime,jdbcType=TIMESTAMP}, #{modifyDatetime,jdbcType=TIMESTAMP}, 
       #{isDelete,jdbcType=INTEGER}, #{desc,jdbcType=VARCHAR}, #{branch,jdbcType=INTEGER}, 
       #{suffix,jdbcType=VARCHAR}, #{weight,jdbcType=INTEGER})
@@ -49,6 +50,9 @@
       </if>
       <if test="wareName != null" >
         ware_name,
+      </if>
+      <if test="realName != null" >
+        real_name,
       </if>
       <if test="wareUrl != null" >
         ware_url,
@@ -84,6 +88,9 @@
       </if>
       <if test="wareName != null" >
         #{wareName,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
       </if>
       <if test="wareUrl != null" >
         #{wareUrl,jdbcType=VARCHAR},
@@ -121,6 +128,9 @@
       <if test="wareName != null" >
         ware_name = #{wareName,jdbcType=VARCHAR},
       </if>
+      <if test="realName != null" >
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
       <if test="wareUrl != null" >
         ware_url = #{wareUrl,jdbcType=VARCHAR},
       </if>
@@ -134,7 +144,7 @@
         is_delete = #{isDelete,jdbcType=INTEGER},
       </if>
       <if test="desc != null" >
-        desc = #{desc,jdbcType=VARCHAR},
+        `desc` = #{desc,jdbcType=VARCHAR},
       </if>
       <if test="branch != null" >
         branch = #{branch,jdbcType=INTEGER},
@@ -152,11 +162,12 @@
     update course_ware
     set course_id = #{courseId,jdbcType=INTEGER},
       ware_name = #{wareName,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
       ware_url = #{wareUrl,jdbcType=VARCHAR},
       create_datetime = #{createDatetime,jdbcType=TIMESTAMP},
       modify_datetime = #{modifyDatetime,jdbcType=TIMESTAMP},
       is_delete = #{isDelete,jdbcType=INTEGER},
-      desc = #{desc,jdbcType=VARCHAR},
+      `desc` = #{desc,jdbcType=VARCHAR},
       branch = #{branch,jdbcType=INTEGER},
       suffix = #{suffix,jdbcType=VARCHAR},
       weight = #{weight,jdbcType=INTEGER}

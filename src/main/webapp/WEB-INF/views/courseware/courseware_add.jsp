@@ -87,7 +87,7 @@
       </div>
 
       <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
-        <form id="pageForm" class="am-form am-form-horizontal" action="${ctx}/courseware/addWars" method="post" autocomplete="off">
+        <form id="pageForm" class="am-form am-form-horizontal" action="${ctx}/courseware/addWars" method="post" enctype="multipart/form-data" autocomplete="off">
         <input type="hidden" name="id" id="id">
         <input type="hidden" name="courseId" id="courseId">
           <div class="am-form-group">
@@ -214,7 +214,7 @@ $(document).ready(function(){
             	$.each(data, function(i,courses) {
                     $('#ages').append(
                     		 "<label class='am-btn am-btn-default am-btn-xs'>"+
-                             "<input type='radio' class='useages' name='age' value='+courses.id+'>"
+                             "<input type='radio' class='useages' name='age' value="+courses.id+">"
             							+courses.courseName+
                              "</label>"
                     		 ); 

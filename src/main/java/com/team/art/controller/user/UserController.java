@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,21 +60,28 @@ public class UserController {
     }
 
     @RequestMapping("/add")
-    public String insertUser(User user) {
+    public String insertUser(User user, HttpServletRequest request, HttpServletResponse response) {
         Date createDatetime = new Date();
         user.setCreateDatetime(createDatetime);
         user.setIsDelete(1);
-        int result = userService.insertUser(user);
+        HttpSession session = request.getSession();
+        String username = (String) session.getAttribute("username");
+        int result = 0;
+        if (null != username) {
+            result = userService.insertUser(user);
+        }
         if (result == 1) {
             return "redirect:users";
         } else {
-            return "注册失败";
+            return "login";
         }
     }
 
     @RequestMapping("/toadd")
-    public String toAdd() {
+    public String toAdd(HttpServletRequest request, HttpServletResponse response) {
+
         return "teacher/teacher_add";
+
     }
 
     @RequestMapping("/toUpdate")

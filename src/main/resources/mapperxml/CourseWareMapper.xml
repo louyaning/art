@@ -7,6 +7,7 @@
     <result column="ware_name" property="wareName" jdbcType="VARCHAR" />
     <result column="real_name" property="realName" jdbcType="VARCHAR" />
     <result column="ware_url" property="wareUrl" jdbcType="VARCHAR" />
+    <result column="img_url" property="imgUrl" jdbcType="VARCHAR" />
     <result column="create_datetime" property="createDatetime" jdbcType="TIMESTAMP" />
     <result column="modify_datetime" property="modifyDatetime" jdbcType="TIMESTAMP" />
     <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
@@ -16,7 +17,7 @@
     <result column="weight" property="weight" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, course_id, ware_name, real_name,ware_url, create_datetime, modify_datetime, is_delete, 
+    id, course_id, ware_name, real_name,ware_url, img_url,create_datetime, modify_datetime, is_delete, 
     `desc`, branch, suffix, weight
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -57,6 +58,9 @@
       <if test="wareUrl != null" >
         ware_url,
       </if>
+       <if test="imgUrl != null" >
+        img_url,
+      </if>
       <if test="createDatetime != null" >
         create_datetime,
       </if>
@@ -94,6 +98,9 @@
       </if>
       <if test="wareUrl != null" >
         #{wareUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null" >
+        #{imgUrl,jdbcType=VARCHAR},
       </if>
       <if test="createDatetime != null" >
         #{createDatetime,jdbcType=TIMESTAMP},
@@ -133,6 +140,9 @@
       </if>
       <if test="wareUrl != null" >
         ware_url = #{wareUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null" >
+        img_url = #{imgUrl,jdbcType=VARCHAR},
       </if>
       <if test="createDatetime != null" >
         create_datetime = #{createDatetime,jdbcType=TIMESTAMP},

@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/common/taglibs.jsp"%>
-<%@ include file="/common/messages.jsp" %>
+
 <c:set value="${pageContext.request.contextPath }" var="ctx"></c:set>\
 <script language="JavaScript">
     var ctx = '${ctx}';
@@ -124,4 +124,5 @@
 <!--<![endif]-->
 <script src="../assets/js/app.js"></script>
 </body>
+<%@ include file="/common/messages.jsp" %>
 </html>

@@ -56,11 +56,10 @@ public class UserController extends BaseController {
             log.setLoginTime(loginTime);
             log.setUserId(user.getId());
             logService.insert(log);
-            saveMessage(redirectAttributes, "用户名或密码错误");
             return "redirect:/web/index";
         } else {
             saveMessage(redirectAttributes, "用户名或密码错误");
-            return "login";
+            return "redirect:/web/login";
         }
     }
 

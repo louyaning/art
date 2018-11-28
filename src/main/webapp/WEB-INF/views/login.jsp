@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/common/taglibs.jsp"%>
-<%@ include file="/common/messages.jsp"%>
+
 <html>
 <head lang="en">
   <meta charset="UTF-8">
@@ -67,5 +67,12 @@
     <p>© 2018 版权所有.</p>
   </div>
 </div>
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="../assets/js/jquery.min.js"></script>
+ <script src="../assets/js/index/index.js"></script>
+<script src="../assets/js/amazeui.min.js"></script>
+<!--<![endif]-->
+<script src="../assets/js/app.js"></script>
 </body>
+<%@ include file="/common/messages.jsp"%>
 </html>

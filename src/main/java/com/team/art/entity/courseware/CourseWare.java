@@ -13,6 +13,8 @@ public class CourseWare {
 
     private String  wareUrl;
 
+    private String  imgUrl;
+
     private Date    createDatetime;
 
     private Date    modifyDatetime;
@@ -127,6 +129,14 @@ public class CourseWare {
 
     public void setBranchName(String branchName) {
         this.branchName = branchName;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     @Override

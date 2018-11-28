@@ -53,6 +53,13 @@ public class WebController {
 
     }
 
+    @RequestMapping("/web/login")
+    public String login() {
+
+        return "login";
+
+    }
+
     @RequestMapping("/loadCourseWare")
     @ResponseBody
     public List<CourseWare> loadCourseWare(CourseWare courseWare, HttpServletRequest request) {

@@ -66,7 +66,7 @@
     <div class="am-panel am-panel-default admin-sidebar-panel">
       <div class="am-panel-bd">
         <p><span class="am-icon-tag"></span> wiki</p>
-        <p>欢迎管理员!</p>
+        <p>欢迎${sessionScope.user.username}!</p>
       </div>
     </div>
   </div>

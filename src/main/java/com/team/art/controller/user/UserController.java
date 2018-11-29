@@ -134,6 +134,25 @@ public class UserController extends BaseController {
     @RequestMapping("/detail")
     public ModelAndView findById(Long id) {
         User user = userService.selectByPrimaryKey(id);
-        return new ModelAndView("teacher_detail").addObject("user", user);
+        return new ModelAndView("teacher/teacher_detail").addObject("user", user);
+    }
+
+    /**
+     * 用户注销
+     * 
+     * @param id
+     * @return
+     */
+
+    @RequestMapping("/remove")
+    public String removeUser(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession(false);//防止创建Session
+
+        if (session == null) {
+            return "redirect:/web/login";
+        }
+        session.removeAttribute("user");
+        return "redirect:/web/login";
+
     }
 }

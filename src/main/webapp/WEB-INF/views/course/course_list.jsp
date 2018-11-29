@@ -126,10 +126,10 @@
 				<nav aria-label="Page navigation">
 				<ul class="am-pagination am-fr admin-content-pagination">
 				<li>当前 ${pageInfo.pageNum }页,总${pageInfo.pages }页,总 ${pageInfo.total } 条记录</li>
-					<li><a href="${ctx}/user/users?pn=1">首页</a></li>
+					<li><a href="${ctx}/course/courses?pn=1">首页</a></li>
 					<!-- 如果有上一页就显示上一页 -->
 					<c:if test="${pageInfo.hasPreviousPage }">
-						<li><a href="${ctx }/user/users?pn=${pageInfo.pageNum-1}"
+						<li><a href="${ctx }/course/courses?pn=${pageInfo.pageNum-1}"
 							aria-label="Previous"> <span aria-hidden="true">«</span>
 						</a></li>
 					</c:if>
@@ -141,18 +141,18 @@
 						</c:if>
 						<c:if test="${page_Num != pageInfo.pageNum }">
 							<!-- 如果不是当前页，发生请求，带上页码数 -->
-							<li><a href="${ctx}/user/users?pn=${page_Num }">${page_Num }</a></li>
+							<li><a href="${ctx}/course/courses?pn=${page_Num }">${page_Num }</a></li>
 						</c:if>
 					</c:forEach>
 					
 					<!-- 如果有下一页就显示下一页 -->
 					<c:if test="${pageInfo.hasNextPage }">
-						<li><a href="${ctx }/user/users?pn=${pageInfo.pageNum+1 }"
+						<li><a href="${ctx }/course/courses?pn=${pageInfo.pageNum+1 }"
 							aria-label="Next"> <span aria-hidden="true">»</span>
 						</a></li>
 					</c:if>
 					
-					<li><a href="${ctx}/user/users?pn=${pageInfo.pages}">末页</a></li>
+					<li><a href="${ctx}/course/courses?pn=${pageInfo.pages}">末页</a></li>
 				</ul>
 				</nav>
 			</div>

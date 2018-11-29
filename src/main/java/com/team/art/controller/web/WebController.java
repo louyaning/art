@@ -63,7 +63,6 @@ public class WebController {
     @RequestMapping("/loadCourseWare")
     @ResponseBody
     public List<CourseWare> loadCourseWare(CourseWare courseWare, HttpServletRequest request) {
-        System.out.println(courseWare);
         //TODO 这里的操作应该是。查出来一级菜单，在查出来二级菜单。 
         List<CourseWare> listCoursesWareByBranch = courseWareService
             .listCoursesWareByBranch(courseWare);

@@ -2,7 +2,6 @@ package com.team.art.controller.courseware;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -42,18 +41,8 @@ public class CourseWareController {
         //使用分页插件
         PageHelper.startPage(pn, 5);
         List<CourseWare> courseWares = courseWareService.listAllCoursesWare(courseware);
-        //使用PageInfo包装查询后的结果，只需要将PageInfo交个页面就好了
-        //可传入连续显示的页数
-        List<CourseWare> courseWare = new ArrayList<CourseWare>();
-        for (CourseWare coursewar : courseWares) {
-            Course course = courseService.selectById(coursewar.getBranch());
-            coursewar.setBranchName(course.getCourseName());
-            courseWare.add(coursewar);
-        }
-        PageInfo page = new PageInfo(courseWare, 8);
-
+        PageInfo page = new PageInfo(courseWares, 8);
         model.addAttribute("pageInfo", page);
-
         return "courseware/courseware_list";//由于视图解析器，会跳转到/WEB-INF/views/目录下
     }
 
@@ -92,6 +81,7 @@ public class CourseWareController {
         String desc = request.getParameter("desc");
         Date createDatetime = new Date();
         CourseWare courseWar = new CourseWare();
+        Course course = courseService.selectById(Integer.valueOf(courseId));
         if (!file.isEmpty()) {
             //以下的代码是将文件file重新命名并存入Tomcat的webapps目录下项目的下级目录fileDir
             String fileRealName = file.getOriginalFilename(); //获得原始文件名;
@@ -109,9 +99,19 @@ public class CourseWareController {
             courseWar.setWeight(Integer.valueOf(weight));
             courseWar.setDesc(desc);
             courseWar.setBranch(Integer.valueOf(courseId));
+            courseWar.setBranchName(course.getCourseName());
             courseWar.setWareName(savedFileName);
             courseWar.setWareUrl(savedDir);
             courseWar.setSuffix(fileSuffix);
+            if (fileSuffix.equals(".ppt") || fileSuffix.equals(".pptx")) {
+                courseWar.setImgUrl(Constant.PPT_IMG_PATH);
+            } else if (fileSuffix.equals(".doc") || fileSuffix.equals(".docx")) {
+                courseWar.setImgUrl(Constant.WORD_IMG_PATH);
+            } else if (fileSuffix.equals(".xlsx") || fileSuffix.equals(".xls")) {
+                courseWar.setImgUrl(Constant.EXCEL_IMG_PATH);
+            } else {
+                courseWar.setImgUrl(Constant.OTHER_IMG_PATH);
+            }
             if (!savedFile.exists()) {
                 new File(savedDir).mkdirs();
             }

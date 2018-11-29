@@ -6,6 +6,7 @@
     <result column="course_id" property="courseId" jdbcType="INTEGER" />
     <result column="ware_name" property="wareName" jdbcType="VARCHAR" />
     <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="branch_name" property="branchName" jdbcType="VARCHAR" />
     <result column="ware_url" property="wareUrl" jdbcType="VARCHAR" />
     <result column="img_url" property="imgUrl" jdbcType="VARCHAR" />
     <result column="create_datetime" property="createDatetime" jdbcType="TIMESTAMP" />
@@ -33,11 +34,11 @@
   <insert id="insert" parameterType="com.team.art.entity.courseware.CourseWare" >
     insert into course_ware (id, course_id, ware_name,real_name, 
       ware_url, create_datetime, modify_datetime, 
-      is_delete, desc, branch, 
+      is_delete, desc, branch, branch_name,
       suffix, weight)
     values (#{id,jdbcType=INTEGER}, #{courseId,jdbcType=INTEGER}, #{wareName,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR},
       #{wareUrl,jdbcType=VARCHAR}, #{createDatetime,jdbcType=TIMESTAMP}, #{modifyDatetime,jdbcType=TIMESTAMP}, 
-      #{isDelete,jdbcType=INTEGER}, #{desc,jdbcType=VARCHAR}, #{branch,jdbcType=INTEGER}, 
+      #{isDelete,jdbcType=INTEGER}, #{desc,jdbcType=VARCHAR}, #{branch,jdbcType=INTEGER}, #{branchName,jdbcType=VARCHAR},
       #{suffix,jdbcType=VARCHAR}, #{weight,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.team.art.entity.courseware.CourseWare" >
@@ -51,6 +52,9 @@
       </if>
       <if test="wareName != null" >
         ware_name,
+      </if>
+      <if test="branchName != null" >
+        branch_name,
       </if>
       <if test="realName != null" >
         real_name,
@@ -92,6 +96,9 @@
       </if>
       <if test="wareName != null" >
         #{wareName,jdbcType=VARCHAR},
+      </if>
+       <if test="branchName != null" >
+        #{branchName,jdbcType=VARCHAR},
       </if>
       <if test="realName != null" >
         #{realName,jdbcType=VARCHAR},
@@ -201,7 +208,6 @@
     where
     is_delete=1 
     and course_id = #{courseId}
-     
     order by weight DESC
    </select>
    <!--   逻辑删除 -->

@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/common/taglibs.jsp"%>
 
-<c:set value="${pageContext.request.contextPath }" var="ctx"></c:set>\
+<c:set value="${pageContext.request.contextPath }" var="ctx"></c:set>
 <script language="JavaScript">
     var ctx = '${ctx}';
 </script>

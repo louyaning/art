@@ -23,8 +23,10 @@ function loadCourseWare(id,name,parentName) {
         		var str = "";
         		
 				for(var item in data){
-					str += "<li><a href='javascript:;'><img class='am-img-thumbnail am-img-bdrs' src = '" +data[item].wareUrl
-					+"'><div class='gallery-title'>"+data[item].desc+"</div>"
+					str += "<li><a href='javascript:;'><img class='am-img-thumbnail am-img-bdrs' src = '" +data[item].imgUrl
+					+"'>"
+					+"<div class='gallery-title'>"+'文件名字：'+data[item].realName+"</div>"
+					+"<div class='gallery-title'>"+'文件信息：'+data[item].desc+"</div>"
 					+"<div class='gallery-desc'>"+timeStamp2String(data[item].modifyDatetime)+"</div>"
     				+"</a>";
 					

@@ -55,7 +55,7 @@
                 <p>你可以使用<a href="#">gravatar.com</a>提供的头像或者使用本地上传头像。 </p>
                 <form class="am-form">
                   <div class="am-form-group">
-                    <input type="file" id="user-pic">
+                    <input type="password" id="user-pic">
                     <p class="am-form-help">请选择要上传的文件...</p>
                     <button type="button" class="am-btn am-btn-primary am-btn-xs">保存</button>
                   </div>

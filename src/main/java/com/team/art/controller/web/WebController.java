@@ -83,7 +83,8 @@ public class WebController {
         HttpHeaders headers = new HttpHeaders();
         CourseWare courseWare = courseWareService.selectByWareName(fileName);
         String wareUrl = courseWare.getWareUrl();
-        File file = new File(wareUrl.replaceAll("\\", "/"));
+        String url = wareUrl.replaceAll("\\\\", "/");
+        File file = new File(url + "/" + fileName);
 
         headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
         headers.setContentDispositionFormData("attachment", fileName);

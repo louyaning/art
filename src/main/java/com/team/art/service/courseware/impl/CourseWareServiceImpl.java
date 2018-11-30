@@ -52,4 +52,10 @@ public class CourseWareServiceImpl implements CourseWareService {
         return listCoursesWareByBranch;
     }
 
+    @Override
+    public CourseWare selectByWareName(String wareName) {
+        CourseWare courseWare = courseWareMapper.selectByWareName(wareName);
+        return courseWare;
+    }
+
 }

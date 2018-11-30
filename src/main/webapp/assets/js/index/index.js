@@ -23,7 +23,7 @@ function loadCourseWare(id,name,parentName) {
         		var str = "";
         		
 				for(var item in data){
-					str += "<li><a href='javascript:;'><img class='am-img-thumbnail am-img-bdrs' src = '" +data[item].imgUrl
+					str += "<li><a  href='../downCourseWare?fileName="+data[item].wareName+"'><img class='am-img-thumbnail am-img-bdrs' src = '" +data[item].imgUrl
 					+"'>"
 					+"<div class='gallery-title'>"+'文件名字：'+data[item].realName+"</div>"
 					+"<div class='gallery-title'>"+'文件信息：'+data[item].desc+"</div>"

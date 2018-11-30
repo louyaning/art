@@ -18,9 +18,10 @@ public interface CourseWareMapper {
     int updateByPrimaryKey(CourseWare record);
 
     List<CourseWare> listAllCourseWares(CourseWare courseWare);
-    
+
     List<CourseWare> listCoursesWareByBranch(CourseWare courseWare);
-    
 
     int updateByDelete(Integer id);
+
+    CourseWare selectByWareName(String wareName);
 }

@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.team.art.mapper.permession.PermissionMapper" >
+<mapper namespace="com.team.art.mapper.authority.PermissionMapper" >
   <resultMap id="BaseResultMap" type="com.team.art.entity.permission.Permission" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="teacher_id" property="teacherId" jdbcType="INTEGER" />
+    <result column="teacher_name" property="teacherName" jdbcType="VARCHAR" />
     <result column="course_id" property="courseId" jdbcType="INTEGER" />
-    <result column="course_branch_id" property="courseBranchId" jdbcType="INTEGER" />
+    <result column="course_name" property="courseName" jdbcType="VARCHAR" />
+    <result column="course_branch_id" property="courseBranchId" jdbcType="VARCHAR" />
+    <result column="courseware_name" property="coursewareName" jdbcType="VARCHAR" />
     <result column="create_datetime" property="createDatetime" jdbcType="TIMESTAMP" />
     <result column="modify_datetime" property="modifyDatetime" jdbcType="TIMESTAMP" />
     <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, teacher_id, course_id, course_branch_id, create_datetime, modify_datetime, is_delete
+    id, teacher_id, teacher_name, course_id, course_name, course_branch_id, courseware_name, 
+    create_datetime, modify_datetime, is_delete
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -24,11 +28,13 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.team.art.entity.permission.Permission" >
-    insert into permission (id, teacher_id, course_id, 
-      course_branch_id, create_datetime, modify_datetime, 
+    insert into permission (id, teacher_id, teacher_name, 
+      course_id, course_name, course_branch_id, 
+      courseware_name, create_datetime, modify_datetime, 
       is_delete)
-    values (#{id,jdbcType=INTEGER}, #{teacherId,jdbcType=INTEGER}, #{courseId,jdbcType=INTEGER}, 
-      #{courseBranchId,jdbcType=INTEGER}, #{createDatetime,jdbcType=TIMESTAMP}, #{modifyDatetime,jdbcType=TIMESTAMP}, 
+    values (#{id,jdbcType=INTEGER}, #{teacherId,jdbcType=INTEGER}, #{teacherName,jdbcType=VARCHAR}, 
+      #{courseId,jdbcType=INTEGER}, #{courseName,jdbcType=VARCHAR}, #{courseBranchId,jdbcType=VARCHAR}, 
+      #{coursewareName,jdbcType=VARCHAR}, #{createDatetime,jdbcType=TIMESTAMP}, #{modifyDatetime,jdbcType=TIMESTAMP}, 
       #{isDelete,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.team.art.entity.permission.Permission" >
@@ -40,11 +46,20 @@
       <if test="teacherId != null" >
         teacher_id,
       </if>
+      <if test="teacherName != null" >
+        teacher_name,
+      </if>
       <if test="courseId != null" >
         course_id,
       </if>
+      <if test="courseName != null" >
+        course_name,
+      </if>
       <if test="courseBranchId != null" >
         course_branch_id,
+      </if>
+      <if test="coursewareName != null" >
+        courseware_name,
       </if>
       <if test="createDatetime != null" >
         create_datetime,
@@ -63,11 +78,20 @@
       <if test="teacherId != null" >
         #{teacherId,jdbcType=INTEGER},
       </if>
+      <if test="teacherName != null" >
+        #{teacherName,jdbcType=VARCHAR},
+      </if>
       <if test="courseId != null" >
         #{courseId,jdbcType=INTEGER},
       </if>
+      <if test="courseName != null" >
+        #{courseName,jdbcType=VARCHAR},
+      </if>
       <if test="courseBranchId != null" >
-        #{courseBranchId,jdbcType=INTEGER},
+        #{courseBranchId,jdbcType=VARCHAR},
+      </if>
+      <if test="coursewareName != null" >
+        #{coursewareName,jdbcType=VARCHAR},
       </if>
       <if test="createDatetime != null" >
         #{createDatetime,jdbcType=TIMESTAMP},
@@ -86,11 +110,20 @@
       <if test="teacherId != null" >
         teacher_id = #{teacherId,jdbcType=INTEGER},
       </if>
+      <if test="teacherName != null" >
+        teacher_name = #{teacherName,jdbcType=VARCHAR},
+      </if>
       <if test="courseId != null" >
         course_id = #{courseId,jdbcType=INTEGER},
       </if>
+      <if test="courseName != null" >
+        course_name = #{courseName,jdbcType=VARCHAR},
+      </if>
       <if test="courseBranchId != null" >
-        course_branch_id = #{courseBranchId,jdbcType=INTEGER},
+        course_branch_id = #{courseBranchId,jdbcType=VARCHAR},
+      </if>
+      <if test="coursewareName != null" >
+        courseware_name = #{coursewareName,jdbcType=VARCHAR},
       </if>
       <if test="createDatetime != null" >
         create_datetime = #{createDatetime,jdbcType=TIMESTAMP},
@@ -107,11 +140,24 @@
   <update id="updateByPrimaryKey" parameterType="com.team.art.entity.permission.Permission" >
     update permission
     set teacher_id = #{teacherId,jdbcType=INTEGER},
+      teacher_name = #{teacherName,jdbcType=VARCHAR},
       course_id = #{courseId,jdbcType=INTEGER},
-      course_branch_id = #{courseBranchId,jdbcType=INTEGER},
+      course_name = #{courseName,jdbcType=VARCHAR},
+      course_branch_id = #{courseBranchId,jdbcType=VARCHAR},
+      courseware_name = #{coursewareName,jdbcType=VARCHAR},
       create_datetime = #{createDatetime,jdbcType=TIMESTAMP},
       modify_datetime = #{modifyDatetime,jdbcType=TIMESTAMP},
       is_delete = #{isDelete,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  
+   <select id="listAllPermissions" resultMap="BaseResultMap" parameterType="com.team.art.entity.permission.Permission">
+    select
+    <include refid="Base_Column_List" />
+    from permission 
+    where
+    is_delete=1 
+    order by id ASC
+  </select>
 </mapper>

@@ -11,7 +11,7 @@
   <html>
   <head lang="en">
   <meta charset="UTF-8">
-  <title>后台管理系统</title>
+  <title>点石艺术后台管理系统</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Amaze后台管理系统模板HTML首页 - cssmoban</title>

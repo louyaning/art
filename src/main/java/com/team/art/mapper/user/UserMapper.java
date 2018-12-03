@@ -27,4 +27,6 @@ public interface UserMapper {
     List<User> listAllUsers(User user);
 
     int updateByDelete(Long id);
+
+    List<User> selectTeacher();
 }

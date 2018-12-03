@@ -11,7 +11,7 @@
   <html>
   <head lang="en">
   <meta charset="UTF-8">
-  <title>后台管理系统</title>
+  <title>点石艺术后台管理系统</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Amaze后台管理系统模板HTML首页 - cssmoban</title>
@@ -48,10 +48,10 @@
              <!--  <button type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 新增</button> -->
             </div>
               <div class="am-form-group am-margin-left am-fl">
-              <select>
+             <!--  <select>
                 <option value="option1">所有类别</option>
                 
-              </select>
+              </select> -->
             </div>
           </div>
         </div>

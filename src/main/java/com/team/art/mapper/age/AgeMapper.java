@@ -18,4 +18,6 @@ public interface AgeMapper {
     int updateByPrimaryKeySelective(Age record);
 
     int updateByPrimaryKey(Age record);
+
+    Age selectByid(Integer id);
 }

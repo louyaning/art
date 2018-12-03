@@ -50,6 +50,7 @@ public class WebController {
 
                 request.setAttribute("listCoursesWareByBranch", listCoursesWareByBranch);
             }
+
             request.setAttribute("courses", courses);
         } catch (Exception e) {
             //e.printStackTrace();

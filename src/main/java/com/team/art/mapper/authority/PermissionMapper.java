@@ -1,4 +1,6 @@
-package com.team.art.mapper.permession;
+package com.team.art.mapper.authority;
+
+import java.util.List;
 
 import com.team.art.entity.permission.Permission;
 
@@ -14,4 +16,6 @@ public interface PermissionMapper {
     int updateByPrimaryKeySelective(Permission record);
 
     int updateByPrimaryKey(Permission record);
+
+    List<Permission> listAllPermissions(Permission permission);
 }

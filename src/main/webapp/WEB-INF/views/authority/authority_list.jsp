@@ -11,7 +11,7 @@
   <html>
   <head lang="en">
   <meta charset="UTF-8">
-  <title>后台管理系统</title>
+  <title>点石艺术后台管理系统</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Amaze后台管理系统模板HTML首页 - cssmoban</title>
@@ -48,7 +48,7 @@
              <!--  <button type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 新增</button> -->
             </div>
               <div class="am-form-group am-margin-left am-fl">
-              <!-- <select>
+             <!--  <select>
                 <option value="option1">所有类别</option>
                 
               </select> -->
@@ -74,13 +74,9 @@
         <table class="am-table am-table-bd am-table-striped admin-content-table">
                                 <thead>
                                  <tr>
-                                    <th >老师编号</th>
                                     <th >老师名称</th>
-                                    <th >密码</th>
-                                    <th >邮箱</th>
-                                    <th >手机号码</th>
-                                    <th >类型</th>
-                                    <th >信息</th>
+                                    <th >课程名称</th>
+                                    <th >可看课件年龄</th>
                                     <th >操作</th>
                                 </tr>
                                 </thead>
@@ -89,31 +85,20 @@
                         <tr>
                                        
                                         <td>
-                                               ${ele.id}
+                                               ${ele.teacherName}
                                         </td>
                                         <td>
-                                               ${ele.username}
+                                               ${ele.courseName}
                                         </td>
                                         <td>
-                                               ${ele.password}
+                                               ${ele.coursewareName}
                                         </td>
-                                        <td>
-                                               ${ele.email}
-                                        </td>
-                                        <td>
-                                                ${ele.mobile}
-                                        </td>
-                                        <td>
-                                                ${ele.type}
-                                        </td>
-                                        <td>
-                                                ${ele.info}
-                                        </td>
+                                       
                                         <td >
                                          <div class="am-btn-toolbar">
                                            <div class="am-btn-group am-btn-group-xs">
-                                            <a style="color: #7A67EE" class="am-btn am-btn-default am-btn-xs am-text-secondary" href="${ctx }/user/toUpdate?id=${ele.id}"><span class="am-icon-pencil-square-o"></span>编辑</a>
-                                            <a style="color: #FF4500" class="am-btn am-btn-default am-btn-xs am-text-danger" href="${ctx}/user/delete?id=${ele.id}"><span class="am-icon-trash-o"></span> 删除</a> 
+                                           <%--  <a style="color: #7A67EE" class="am-btn am-btn-default am-btn-xs am-text-secondary" href="${ctx }/course/toUpdate?id=${ele.id}"><span class="am-icon-pencil-square-o"></span>编辑</a> --%>
+                                            <a style="color: #FF4500" class="am-btn am-btn-default am-btn-xs am-text-danger" href="${ctx}/authority/delete?id=${ele.id}"><span class="am-icon-trash-o"></span> 删除</a> 
                                           </div>
                                           </div>
                                         </td>
@@ -134,10 +119,10 @@
 				<nav aria-label="Page navigation">
 				<ul class="am-pagination am-fr admin-content-pagination">
 				<li>当前 ${pageInfo.pageNum }页,总${pageInfo.pages }页,总 ${pageInfo.total } 条记录</li>
-					<li><a href="${ctx}/user/users?pn=1">首页</a></li>
+					<li><a href="${ctx}/authority/authoritys?pn=1">首页</a></li>
 					<!-- 如果有上一页就显示上一页 -->
 					<c:if test="${pageInfo.hasPreviousPage }">
-						<li><a href="${ctx }/user/users?pn=${pageInfo.pageNum-1}"
+						<li><a href="${ctx }/authority/authoritys?pn=${pageInfo.pageNum-1}"
 							aria-label="Previous"> <span aria-hidden="true">«</span>
 						</a></li>
 					</c:if>
@@ -149,18 +134,18 @@
 						</c:if>
 						<c:if test="${page_Num != pageInfo.pageNum }">
 							<!-- 如果不是当前页，发生请求，带上页码数 -->
-							<li><a href="${ctx}/user/users?pn=${page_Num }">${page_Num }</a></li>
+							<li><a href="${ctx}/authority/authoritys?pn=${page_Num }">${page_Num }</a></li>
 						</c:if>
 					</c:forEach>
 					
 					<!-- 如果有下一页就显示下一页 -->
 					<c:if test="${pageInfo.hasNextPage }">
-						<li><a href="${ctx }/user/users?pn=${pageInfo.pageNum+1 }"
+						<li><a href="${ctx }/authority/authoritys?pn=${pageInfo.pageNum+1 }"
 							aria-label="Next"> <span aria-hidden="true">»</span>
 						</a></li>
 					</c:if>
 					
-					<li><a href="${ctx}/user/users?pn=${pageInfo.pages}">末页</a></li>
+					<li><a href="${ctx}/authority/authoritys?pn=${pageInfo.pages}">末页</a></li>
 				</ul>
 				</nav>
 			</div>

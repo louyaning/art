@@ -53,4 +53,10 @@ public class UserServiceImpl implements UserService {
         int result = userMapper.updateByDelete(id);
         return result;
     }
+	
+	@Override
+    public List<User> selectTeacher() {
+        List<User> teachers = userMapper.selectTeacher();
+        return teachers;
+    }
 }

@@ -53,4 +53,11 @@ public interface UserService {
     * @return
     */
     int updateByDelete(Long id);
+	
+	/**
+    * 
+    * 查询老师
+    * @return
+    */
+	List<User> selectTeacher();
 }

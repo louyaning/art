@@ -7,13 +7,19 @@ public class Permission {
 
     private Integer teacherId;
 
+    private String  teacherName;
+
     private Integer courseId;
 
-    private Integer courseBranchId;
+    private String  courseName;
 
-    private Date createDatetime;
+    private String  courseBranchId;
 
-    private Date modifyDatetime;
+    private String  coursewareName;
+
+    private Date    createDatetime;
+
+    private Date    modifyDatetime;
 
     private Integer isDelete;
 
@@ -33,6 +39,14 @@ public class Permission {
         this.teacherId = teacherId;
     }
 
+    public String getTeacherName() {
+        return teacherName;
+    }
+
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName == null ? null : teacherName.trim();
+    }
+
     public Integer getCourseId() {
         return courseId;
     }
@@ -41,12 +55,28 @@ public class Permission {
         this.courseId = courseId;
     }
 
-    public Integer getCourseBranchId() {
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName == null ? null : courseName.trim();
+    }
+
+    public String getCourseBranchId() {
         return courseBranchId;
     }
 
-    public void setCourseBranchId(Integer courseBranchId) {
+    public void setCourseBranchId(String courseBranchId) {
         this.courseBranchId = courseBranchId;
+    }
+
+    public String getCoursewareName() {
+        return coursewareName;
+    }
+
+    public void setCoursewareName(String coursewareName) {
+        this.coursewareName = coursewareName == null ? null : coursewareName.trim();
     }
 
     public Date getCreateDatetime() {

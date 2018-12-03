@@ -26,4 +26,9 @@ public class AgeServiceImpl implements AgeService {
         return age;
     }
 
+    @Override
+    public Age selectByid(Integer id) {
+        return ageMapper.selectByid(id);
+    }
+
 }

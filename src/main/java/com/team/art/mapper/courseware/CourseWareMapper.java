@@ -20,6 +20,8 @@ public interface CourseWareMapper {
     List<CourseWare> listAllCourseWares(CourseWare courseWare);
 
     List<CourseWare> listCoursesWareByBranch(CourseWare courseWare);
+    
+    int countCoursesWareByBranch(CourseWare courseWare);
 
     int updateByDelete(Integer id);
 

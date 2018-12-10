@@ -2,7 +2,9 @@ package com.team.art.entity.courseware;
 
 import java.util.Date;
 
-public class CourseWare {
+import com.team.art.entity.PageUtil;
+
+public class CourseWare extends PageUtil {
     private Integer id;
 
     private Integer courseId;
@@ -30,6 +32,7 @@ public class CourseWare {
     private String  suffix;
 
     private Integer weight;
+    
 
     public Integer getId() {
         return id;

@@ -58,4 +58,10 @@ public class CourseWareServiceImpl implements CourseWareService {
         return courseWare;
     }
 
+	@Override
+	public int countCoursesWareByBranch(CourseWare courseWare) {
+		// TODO Auto-generated method stub
+		return courseWareMapper.countCoursesWareByBranch(courseWare);
+	}
+
 }

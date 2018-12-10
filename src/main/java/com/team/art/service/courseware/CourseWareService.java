@@ -18,4 +18,7 @@ public interface CourseWareService {
     int updateByDelete(Integer id);
 
     CourseWare selectByWareName(String wareName);
+    
+    int countCoursesWareByBranch(CourseWare courseWare);
+    
 }

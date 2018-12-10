@@ -2,41 +2,76 @@ $(document).ready(function () {
 	loadCourseWare();
 });
 
-function loadCourseWare(id,name,parentName) {
+var pageSize = 2;
+function loadCourseWare(id,name,parentName,pageno,pagesize) {
+	console.log("id==="+id+"==name===="+name+"==parentName===="+parentName+"==pageno===="+pageno+"==pagesize===="+pagesize);
 	$("#courseParentName").text(parentName);
 	$("#courseName").text(name);
 	$("#courseWare").html("");
 	if(id==null){
 		id = -1;
 	}
+	if(pagesize == null){
+		pagesize = pageSize;
+	}
+	if(pageno == null){
+		pageno = 1;
+	}
+	var parameter = {
+			pageSize:pagesize,
+			pageNo:pageno,
+			courseId:id
+	}
 	
 	$.ajax({
-        type: 'post',
+        type: "post",
         url: "../loadCourseWare",
-        data: {courseId:id},
-        dataType: 'json',
+        data: parameter,
+        dataType: "json",
         async: true,
         success: function (data) {
-        
-        	if(data.length>0){
+        	console.log(data);
+        	//封装页码
+        	$("#rowNumber").html("共 "+data.total+" 条记录")
+        	
+        	var html = "";
+        	if(pageno == 1){
+    			html +=  "<li class=\"am-disabled\"><a href=\"#\">&laquo;</a></li>"
+    		}else{
+    			html +=  "<li><a onclick=\"loadCourseWare("+id+",'"+name+"','"+parentName+"',"+(pageno-1)+","+pagesize+")\" href=\"javaScript:;\" >&laquo;</a></li>"
+    		}
+        	for(var i=1;i<=data.total;i++){
+        		if(i==pageno){
+        			html += "<li class=\"am-active\"><a href=\"javaScript:;\" onclick=\"loadCourseWare("+id+",'"+name+"','"+parentName+"',"+i+","+pagesize+")\">"+i+"</a></li>"
+        		}else{
+        			html += "<li><a href=\"javaScript:;\" onclick=\"loadCourseWare("+id+",'"+name+"','"+parentName+"',"+i+","+pagesize+")\">"+i+"</a></li>"
+        		}
         		
+        		
+        	}
+        	if(pageno == data.total){
+    			html +=  "<li class=\"am-disabled\"><a href=\"#\">&raquo;</a></li>"
+    		}else{
+    			html +=  "<li><a href=\"javaScript:;\" onclick=\"loadCourseWare("+id+",'"+name+"','"+parentName+"',"+(pageno+1)+","+pagesize+")\">&raquo;</a></li>"
+    		}
+        	
+            $("#pageCount").html(html);
+        	//封装插件
+        	if(data.rows.length>0){
+        		var data = data.rows;
         		var str = "";
         		
 				for(var item in data){
-					str += "<li><a  href='../downCourseWare?fileName="+data[item].wareName+"'><img class='am-img-thumbnail am-img-bdrs' src = '" +data[item].imgUrl
-					+"'>"
-					+"<div class='gallery-title'>"+'文件名字：'+data[item].realName+"</div>"
-					+"<div class='gallery-title'>"+'文件信息：'+data[item].desc+"</div>"
-					+"<div class='gallery-desc'>"+timeStamp2String(data[item].modifyDatetime)+"</div>"
+					str += "<li><a  href='../downCourseWare?fileName="+data[item].wareName+"'><img class='am-img-thumbnail am-img-bdrs' src = '"+data[item].imgUrl+"'>"
+					+"<div class=\"gallery-title\">"+"文件名字："+data[item].realName+"</div>"
+					+"<div class=\"gallery-title\">"+"文件信息："+data[item].desc+"</div>"
+					+"<div class=\"gallery-desc\">"+timeStamp2String(data[item].modifyDatetime)+"</div>"
     				+"</a>";
 					
         		}
         		$("#courseWare").html(str);
 				
         	}
-        		
-        	
-        		
         	
         	
          

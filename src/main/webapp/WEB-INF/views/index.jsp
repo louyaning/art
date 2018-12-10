@@ -34,20 +34,18 @@
   以获得更好的体验！</p>
 <![endif]-->
 
-<header>
+  <header>
    <%@ include file="/common/head.jsp"%>
   </header>
-  <div>
+  
+  <div class="am-cf admin-main">
+  
   <%@ include file="/common/left.jsp"%>
 
   <!-- content start -->
   	<div class="admin-content">
-
-
-	
-
-	<div class="am-u-sm-centered">
-		<ul class="am-nav-justify am-thumbnails am-nav  am-padding am-nav-pills am-text-center admin-content-list">
+	  	
+		<ul  class="am-nav-justify am-thumbnails am-nav  am-padding am-nav-pills am-text-center admin-content-list">
 		   
 		    <c:forEach items="${courses}" var="course">
 			    <li class="am-dropdown" data-am-dropdown>
@@ -56,36 +54,28 @@
 			        </a>
 			        <ul class="am-dropdown-content am-nav-justify">
 			            <c:forEach items="${course.courses}" var="course2">
-			            	<li><a href="javaScript:;" onclick="loadCourseWare('${course2.id}','${course2.courseName}','${course.courseName }')">${course2.courseName }</a></li>
+			            	<li><a href="javaScript:;" onclick="loadCourseWare('${course2.id}','${course2.courseName}','${course.courseName }' )">${course2.courseName }</a></li>
 			            </c:forEach>
 			        </ul>
 			    </li>
 		    </c:forEach>
 		    
 		 </ul>
-	 </div>
-	 
-	 <div class="am-cf am-padding">
-	      <div class="am-fl am-cf"><strong  id="courseParentName" class="am-text-primary am-text-lg">首页</strong> / <small id="courseName">Gallery</small></div>
-	 </div>
-	<!-- 	 <div class="am-cf am-padding">
-      <div class="am-fl am-cf"><small id="courseName">Gallery</small></div>
-    </div> -->
+ <div class="am-cf am-padding">
+		      <div class="am-fl am-cf"><strong  id="courseParentName" class="am-text-primary am-text-lg">首页</strong> / <small id="courseName">Gallery</small></div>
+		 </div>
+	
 
     <ul id="courseWare" class="am-avg-sm-2 am-avg-md-4 am-avg-lg-6 am-margin gallery-list">
-      <li>
-        <a href="#">
-          <img class="am-img-thumbnail am-img-bdrs" src="http://cn.bing.com/az/hprichv/LondonTrainStation_GettyRR_139321755_ZH-CN742316019.jpg" alt=""/>
-          <div class="gallery-title">远方 有一个地方 那里种有我们的梦想</div>
-          <div class="gallery-desc">2375-09-26</div>
-        </a>
-      </li>
+    
     </ul>
 
     <div class="am-margin am-cf">
       <hr/>
-      <p class="am-fl">共 15 条记录</p>
-      <ol class="am-pagination am-fr">
+      //TODO 有关分页操作。。。
+      //在点击的时候加载出来页数相关的东西。，点击下一页。load页面可以传递出所需要现在load的数据
+      <p class="am-fl" id="rowNumber">共 15 条记录</p>
+      <ol class="am-pagination am-fr" id="pageCount">
         <li class="am-disabled"><a href="#">&laquo;</a></li>
         <li class="am-active"><a href="#">1</a></li>
         <li><a href="#">2</a></li>
@@ -99,15 +89,15 @@
   <!-- content end -->
 		
     </div>
-  </div>
-  
  
+  </div>
+  <%@ include file="/common/foot.jsp"%>
 
    
 
 
 
-<%@ include file="/common/foot.jsp"%>
+
 
 <!--[if lt IE 9]>
 <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>

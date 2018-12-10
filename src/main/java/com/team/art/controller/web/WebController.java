@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.team.art.entity.ScriptPage;
 import com.team.art.entity.course.Course;
 import com.team.art.entity.courseware.CourseWare;
 import com.team.art.service.course.CourseService;
@@ -70,11 +71,16 @@ public class WebController {
 
     @RequestMapping("/loadCourseWare")
     @ResponseBody
-    public List<CourseWare> loadCourseWare(CourseWare courseWare, HttpServletRequest request) {
+    public ScriptPage loadCourseWare(CourseWare courseWare, HttpServletRequest request) {
         //TODO 这里的操作应该是。查出来一级菜单，在查出来二级菜单。 
         List<CourseWare> listCoursesWareByBranch = courseWareService
             .listCoursesWareByBranch(courseWare);
-        return listCoursesWareByBranch;
+        int cout = courseWareService.countCoursesWareByBranch(courseWare);
+    	ScriptPage scriptPage = new ScriptPage();
+    	scriptPage.setRows(listCoursesWareByBranch);
+    	courseWare.calculatePageCount(cout);
+    	scriptPage.setTotal(courseWare.getPageCount());
+        return scriptPage;
 
     }
 

@@ -12,7 +12,7 @@ import java.util.List;
 public class PageUtil {
 	private Integer pageNo = 1;
 	
-	private Integer pageSize = 2;
+	private Integer pageSize = 12;
 	//开始行
 	private Integer startRow;
 	//封装的数据
@@ -35,7 +35,6 @@ public class PageUtil {
 		this.pageSize = pageSize;
 	}
 	public Integer getStartRow() {
-		System.out.println("写入数据："+startRow);
 		return pageSize * ( pageNo - 1);
 	}
 	public void setStartRow(Integer startRow) {

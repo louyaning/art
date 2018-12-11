@@ -2,7 +2,9 @@ $(document).ready(function () {
 	loadCourseWare();
 });
 
-var pageSize = 2;
+//TODO
+//上线前请更改pageSize。
+var pageSize = 6;
 function loadCourseWare(id,name,parentName,pageno,pagesize) {
 	console.log("id==="+id+"==name===="+name+"==parentName===="+parentName+"==pageno===="+pageno+"==pagesize===="+pagesize);
 	$("#courseParentName").text(parentName);
@@ -32,15 +34,17 @@ function loadCourseWare(id,name,parentName,pageno,pagesize) {
         success: function (data) {
         	console.log(data);
         	//封装页码
-        	$("#rowNumber").html("共 "+data.total+" 条记录")
+        	$("#rowNumber").html("共 "+data.total+" 条记录");
         	
         	var html = "";
+        	//首页
         	if(pageno == 1){
     			html +=  "<li class=\"am-disabled\"><a href=\"#\">&laquo;</a></li>"
     		}else{
     			html +=  "<li><a onclick=\"loadCourseWare("+id+",'"+name+"','"+parentName+"',"+(pageno-1)+","+pagesize+")\" href=\"javaScript:;\" >&laquo;</a></li>"
     		}
-        	for(var i=1;i<=data.total;i++){
+        	//中间页码
+        	for(var i=1;i<=data.totalNumber;i++){
         		if(i==pageno){
         			html += "<li class=\"am-active\"><a href=\"javaScript:;\" onclick=\"loadCourseWare("+id+",'"+name+"','"+parentName+"',"+i+","+pagesize+")\">"+i+"</a></li>"
         		}else{
@@ -49,7 +53,9 @@ function loadCourseWare(id,name,parentName,pageno,pagesize) {
         		
         		
         	}
-        	if(pageno == data.total){
+        	//尾页
+        	console.log(pageno);
+        	if(pageno == data.totalNumber || data.totalNumber == 0 ){
     			html +=  "<li class=\"am-disabled\"><a href=\"#\">&raquo;</a></li>"
     		}else{
     			html +=  "<li><a href=\"javaScript:;\" onclick=\"loadCourseWare("+id+",'"+name+"','"+parentName+"',"+(pageno+1)+","+pagesize+")\">&raquo;</a></li>"

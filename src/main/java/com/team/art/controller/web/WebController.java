@@ -79,7 +79,8 @@ public class WebController {
     	ScriptPage scriptPage = new ScriptPage();
     	scriptPage.setRows(listCoursesWareByBranch);
     	courseWare.calculatePageCount(cout);
-    	scriptPage.setTotal(courseWare.getPageCount());
+    	scriptPage.setTotal(cout);
+    	scriptPage.setTotalNumber(courseWare.getPageCount());
         return scriptPage;
 
     }

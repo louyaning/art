@@ -72,8 +72,6 @@
 
     <div class="am-margin am-cf">
       <hr/>
-      //TODO 有关分页操作。。。
-      //在点击的时候加载出来页数相关的东西。，点击下一页。load页面可以传递出所需要现在load的数据
       <p class="am-fl" id="rowNumber">共 15 条记录</p>
       <ol class="am-pagination am-fr" id="pageCount">
         <li class="am-disabled"><a href="#">&laquo;</a></li>

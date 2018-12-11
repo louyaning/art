@@ -41,7 +41,7 @@ public class CourseWareController {
         //使用分页插件
         PageHelper.startPage(pn, 5);
         List<CourseWare> courseWares = courseWareService.listAllCoursesWare(courseware);
-        PageInfo page = new PageInfo(courseWares, 8);
+        PageInfo page = new PageInfo(courseWares, 6);
         model.addAttribute("pageInfo", page);
         return "courseware/courseware_list";//由于视图解析器，会跳转到/WEB-INF/views/目录下
     }

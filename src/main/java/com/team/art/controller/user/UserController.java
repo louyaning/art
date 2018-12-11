@@ -8,8 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +20,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.team.art.controller.DemoController;
 import com.team.art.controller.base.BaseController;
 import com.team.art.entity.log.Log;
 import com.team.art.entity.user.User;
@@ -36,12 +33,11 @@ import com.team.art.util.SessionUtil;
 @Controller
 @RequestMapping("/user")
 public class UserController extends BaseController {
-    private static final Logger logger = LoggerFactory.getLogger(DemoController.class);
 
     @Autowired
-    private UserService         userService;
+    private UserService userService;
     @Autowired
-    private LogService          logService;
+    private LogService  logService;
 
     @RequestMapping("/login")
     public String login(HttpServletRequest request, HttpServletResponse response,
@@ -58,7 +54,7 @@ public class UserController extends BaseController {
             log.setLoginTime(loginTime);
             log.setUserId(user.getId());
             logService.insert(log);
-            return "redirect:/web/index";
+            return "redirect:/web/index?teacherId=" + user.getId();
         } else {
             saveMessage(redirectAttributes, "用户名或密码错误");
             return "redirect:/web/login";
@@ -66,20 +62,19 @@ public class UserController extends BaseController {
     }
 
     @RequestMapping("/add")
-    public String insertUser(User user, HttpServletRequest request, HttpServletResponse response) {
+    public String insertUser(User user, HttpServletRequest request, HttpServletResponse response,
+                             RedirectAttributes redirectAttributes) {
         Date createDatetime = new Date();
         user.setCreateDatetime(createDatetime);
         user.setIsDelete(1);
-        HttpSession session = request.getSession();
-        String username = (String) session.getAttribute("username");
         int result = 0;
-        if (null != username) {
-            result = userService.insertUser(user);
-        }
+        result = userService.insertUser(user);
         if (result == 1) {
+            saveMessage(redirectAttributes, "新增老师成功");
             return "redirect:users";
         } else {
-            return "login";
+            saveMessage(redirectAttributes, "新增老师失败");
+            return "teacher/teacher_add";
         }
     }
 
@@ -104,7 +99,7 @@ public class UserController extends BaseController {
         List<User> users = userService.getAll(user);
         //使用PageInfo包装查询后的结果，只需要将PageInfo交个页面就好了
         //可传入连续显示的页数
-        PageInfo page = new PageInfo(users, 8);
+        PageInfo page = new PageInfo(users, 6);
         model.addAttribute("pageInfo", page);
 
         return "teacher/teacher_list";//由于视图解析器，会跳转到/WEB-INF/views/目录下

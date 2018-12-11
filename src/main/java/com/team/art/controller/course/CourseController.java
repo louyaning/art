@@ -39,7 +39,7 @@ public class CourseController {
         List<Course> courses = courseService.listAllCourses(course);
         //使用PageInfo包装查询后的结果，只需要将PageInfo交个页面就好了
         //可传入连续显示的页数
-        PageInfo page = new PageInfo(courses, 8);
+        PageInfo page = new PageInfo(courses, 6);
         model.addAttribute("pageInfo", page);
 
         return "course/course_list";//由于视图解析器，会跳转到/WEB-INF/views/目录下

@@ -204,6 +204,9 @@
     from course_ware 
     where
     is_delete=1  
+    <if test="realName !=null and realName !=''">
+     and real_name like CONCAT('%',#{realName},'%') 
+    </if>
     order by id ASC
   </select>
      

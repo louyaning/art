@@ -14,8 +14,8 @@
   <title>点石艺术后台管理系统</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Amaze后台管理系统模板HTML首页 - cssmoban</title>
-  <meta name="description" content="这是一个 index 页面">
+  <title>点石艺术后台管理系统</title>
+  <meta name="description" content="点石艺术后台管理系统">
   <meta name="keywords" content="index">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta name="renderer" content="webkit">
@@ -39,7 +39,7 @@
 
 <div class="admin-content">
 
-<form action="${ctx}/user/users" id="pageForm">
+<form action="${ctx}/courseware/coursewares" id="pageForm">
  <div class="am-g">
       <div class="am-u-md-6 am-cf">
         <div class="am-fl am-cf">
@@ -59,7 +59,7 @@
       <div class="am-u-md-3 am-cf">
         <div class="am-fr">
           <div class="am-input-group am-input-group-sm">
-            <input type="text" id="username" name="username" class="am-form-field" placeholder="请输入老师姓名">
+            <input type="text" id="realName" name="realName" class="am-form-field" placeholder="请输入老师姓名">
                 <span class="am-input-group-btn">
                   <button id="query" class="am-btn am-btn-default" type="button">搜索</button>
                 </span>

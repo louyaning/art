@@ -2,6 +2,8 @@ package com.team.art.mapper.course;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.team.art.entity.course.Course;
 
 public interface CourseMapper {
@@ -21,9 +23,13 @@ public interface CourseMapper {
 
     int updateByDelete(Integer id);
 
-    List<Course> listCoursesByPid(Integer pid);
+    List<Course> listCoursesByPid(@Param("pid") Integer pid, @Param("teacherId") int teacherId);
+
+    List<Course> listCoursesByPids(Integer pid);
+
+    List<Course> listCoursesByAdmin(Integer pid);
 
     List<Course> selectCourse();
-	
-	List<Course> selectCourseAges(Integer pid);
+
+    List<Course> selectCourseAges(Integer pid);
 }

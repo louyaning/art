@@ -74,7 +74,7 @@ public class AuthorityController {
         List<Permission> permissions = permissionService.getAll(permission);
         //使用PageInfo包装查询后的结果，只需要将PageInfo交个页面就好了
         //可传入连续显示的页数
-        PageInfo page = new PageInfo(permissions, 8);
+        PageInfo page = new PageInfo(permissions, 6);
         model.addAttribute("pageInfo", page);
 
         return "authority/authority_list";//由于视图解析器，会跳转到/WEB-INF/views/目录下

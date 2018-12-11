@@ -54,8 +54,20 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public List<Course> listCoursesByPid(Integer pid) {
-        List<Course> courses = courseMapper.listCoursesByPid(pid);
+    public List<Course> listCoursesByPid(Integer pid, int teacherId) {
+        List<Course> courses = courseMapper.listCoursesByPid(pid, teacherId);
+        return courses;
+    }
+
+    @Override
+    public List<Course> listCoursesByPids(Integer pid) {
+        List<Course> courses = courseMapper.listCoursesByPids(pid);
+        return courses;
+    }
+
+    @Override
+    public List<Course> listCoursesByAdmin(Integer pid) {
+        List<Course> courses = courseMapper.listCoursesByAdmin(pid);
         return courses;
     }
 
@@ -64,12 +76,11 @@ public class CourseServiceImpl implements CourseService {
         List<Course> courses = courseMapper.selectCourse();
         return courses;
     }
-	
-	@Override
+
+    @Override
     public List<Course> selectCourseAges(Integer pid) {
         List<Course> courses = courseMapper.selectCourseAges(pid);
         return courses;
     }
-	
 
 }

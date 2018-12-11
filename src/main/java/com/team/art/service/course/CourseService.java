@@ -7,7 +7,11 @@ import com.team.art.entity.course.Course;
 public interface CourseService {
     List<Course> listAllCourses(Course course);
 
-    List<Course> listCoursesByPid(Integer pid);
+    List<Course> listCoursesByPid(Integer pid, int teacherId);
+
+    List<Course> listCoursesByPids(Integer pid);
+
+    List<Course> listCoursesByAdmin(Integer pid);
 
     int insertSelective(Course course);
 
@@ -20,6 +24,6 @@ public interface CourseService {
     int updateByDelete(Integer id);
 
     List<Course> selectCourse();
-	
-	List<Course> selectCourseAges(Integer pid);
+
+    List<Course> selectCourseAges(Integer pid);
 }

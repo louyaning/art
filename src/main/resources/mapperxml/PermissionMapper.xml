@@ -158,6 +158,9 @@
     from permission 
     where
     is_delete=1 
+      <if test="teacherName !=null and teacherName !=''">
+     and teacher_name like CONCAT('%',#{teacherName},'%') 
+    </if>
     order by id ASC
   </select>
 </mapper>

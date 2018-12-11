@@ -147,20 +147,50 @@
     from course 
     where
     is_delete=1  and  pid=0
+    <if test="courseName !=null and courseName !=''">
+     and course_name like CONCAT('%',#{courseName},'%') 
+    </if>
     order by id desc
   </select>
   
   <!-- 父课程与子课程关联方法 -->
    <select id="listCoursesByPid" resultMap="BaseResultMap" parameterType="java.lang.Integer">
     select
-    <include refid="Base_Column_List" />
-    from course 
-    where
-    is_delete=1
-    and
-    pid = #{pid}
+    a.*
+    from course  a  
+    join permission  b
+    on  b.course_id=a.id
+    and b.teacher_id=#{teacherId}
     order by weight desc
   </select>
+  
+    <select id="listCoursesByPids" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  
+    select
+    a.*
+    from course a
+    where
+    a.is_delete=1
+    and   instr((SELECT substr(course_branch_id,2) from permission where course_id = #{pid}),a.id) 
+    and
+    a.pid = #{pid}
+    
+    order by a.weight desc
+  </select>
+  
+  
+  
+    <select id="listCoursesByAdmin" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select
+    a.*
+    from course a
+    where
+    a.is_delete=1
+    and
+    a.pid = #{pid}
+    order by a.weight desc
+  </select>
+  
   <select id="selectCourse" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />

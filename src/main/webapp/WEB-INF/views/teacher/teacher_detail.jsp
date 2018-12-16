@@ -32,7 +32,9 @@
    <%@ include file="/common/head.jsp"%>
   </header>
   <div>
+  <c:if test="${'管理员' eq sessionScope.user.type}">
   <%@ include file="/common/left.jsp"%>
+  </c:if>
  
 <!-- content start -->
   <div class="admin-content">

@@ -48,11 +48,12 @@ public class WebController {
                 if (courses.size() > 0) {
                     //循环取出所有的二级菜单
                     for (Course course : courses) {
-                        course.setCourses(courceService.listCoursesByPids(course.getId()));
+                        course
+                            .setCourses(courceService.listCoursesByPids(course.getId(), teacherId));
                     }
-                    //取出第一个默认
+                    /* //取出第一个默认
                     courseWare.setCourseId(
-                        courceService.listCoursesByPids(courses.get(0).getId()).get(0).getId());
+                        courceService.listCoursesByPids(courses.get(0).getId()).get(0).getId());*/
 
                     List<CourseWare> listCoursesWareByBranch = courseWareService
                         .listCoursesWareByBranch(courseWare);

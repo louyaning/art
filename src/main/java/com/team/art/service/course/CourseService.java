@@ -9,7 +9,7 @@ public interface CourseService {
 
     List<Course> listCoursesByPid(Integer pid, int teacherId);
 
-    List<Course> listCoursesByPids(Integer pid);
+    List<Course> listCoursesByPids(Integer pid, Integer teacherId);
 
     List<Course> listCoursesByAdmin(Integer pid);
 

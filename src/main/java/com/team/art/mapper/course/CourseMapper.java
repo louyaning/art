@@ -25,7 +25,8 @@ public interface CourseMapper {
 
     List<Course> listCoursesByPid(@Param("pid") Integer pid, @Param("teacherId") int teacherId);
 
-    List<Course> listCoursesByPids(Integer pid);
+    List<Course> listCoursesByPids(@Param("pid") Integer pid,
+                                   @Param("teacherId") Integer teacherId);
 
     List<Course> listCoursesByAdmin(Integer pid);
 

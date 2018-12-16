@@ -83,7 +83,7 @@
            <div class="am-form-group">
             <label for="user-email" class="am-u-sm-3 am-form-label">权重: </label>
             <div class="am-u-sm-9">
-              <input type="text" id="user-email" name="weight"  placeholder="权重 ">
+              <input type="text" id="user-email" name="weight"  placeholder="权重(只能输入整数)" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}">
             </div>
           </div>
           

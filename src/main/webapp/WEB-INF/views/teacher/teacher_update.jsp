@@ -42,18 +42,10 @@
 
     <hr/>
 
-  <div class="am-g">
-
+    <div class="am-g">
       <div class="am-u-sm-12 am-u-md-4 am-u-md-push-8">
-        
-
-        <div class="am-panel am-panel-default">
-          
       </div>
-
       <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
-      
-      
         <form id="pageForm" class="am-form am-form-horizontal" action="${ctx}/user/update" method="post" autocomplete="off">
         <input type="hidden" name="id" value="${user.id}">
           <div class="am-form-group">
@@ -95,21 +87,24 @@
           <div class="am-form-group">
             <label for="user-QQ" class="am-u-sm-3 am-form-label">类型</label>
             <div class="am-u-sm-9">
-              <input name="type" type="text" id="user-QQ" placeholder="老师类型" value="${user.type}">
+              <select  id="type" name="type">
+                <option value="老师" <c:if test="${'老师' eq user.type}">selected</c:if> >老师</option>
+                <option value="管理员" <c:if test="${'管理员' eq user.type}">selected</c:if>>管理员</option>
+             </select>
             </div>
           </div>
 
           <div class="am-form-group">
             <label for="user-weibo" class="am-u-sm-3 am-form-label">权重</label>
             <div class="am-u-sm-9">
-              <input name="weight" type="text" id="user-weibo" placeholder="权重" value="${user.weight}">
+              <input name="weight" type="text" id="user-weibo" placeholder="权重(只能输入整数)" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" value="${user.weight}">
             </div>
           </div>
 
           <div class="am-form-group">
             <label for="user-intro" class="am-u-sm-3 am-form-label">备注</label>
             <div class="am-u-sm-9">
-              <textarea name="descMemo" class="" rows="5" id="user-intro" placeholder="备注" value="${user.descMemo}"></textarea>
+              <textarea name="descMemo"  id="descMemo" placeholder="备注" >${user.descMemo}</textarea>
             </div>
           </div>
 

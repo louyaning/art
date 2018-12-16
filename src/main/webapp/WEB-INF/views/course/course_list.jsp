@@ -76,7 +76,7 @@
                                  <tr>
                                     <th >课程编号</th>
                                     <th >课程名称</th>
-                                    <th >图标</th>
+                                    
                                     <th >权重</th>
                                     <th >操作</th>
                                 </tr>
@@ -91,9 +91,7 @@
                                         <td>
                                                ${ele.courseName}
                                         </td>
-                                        <td>
-                                               ${ele.cover}
-                                        </td>
+                                        
                                         <td>
                                                ${ele.weight}
                                         </td>

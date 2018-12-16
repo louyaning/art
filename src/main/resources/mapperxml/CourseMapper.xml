@@ -165,18 +165,19 @@
   </select>
   
     <select id="listCoursesByPids" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-  
     select
     a.*
     from course a
     where
     a.is_delete=1
-    and   instr((SELECT substr(course_branch_id,2) from permission where course_id = #{pid}),a.id) 
+    and   instr((SELECT substr(course_branch_id,2) from permission where course_id = #{pid} and teacher_id=#{teacherId}),a.id) 
     and
     a.pid = #{pid}
-    
     order by a.weight desc
-  </select>
+   </select>
+   
+   
+  
   
   
   

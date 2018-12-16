@@ -41,17 +41,9 @@
     </div>
 
     <hr/>
-
     <div class="am-g">
-
       <div class="am-u-sm-12 am-u-md-4 am-u-md-push-8">
-       
-
-        <div class="am-panel am-panel-default">
-          
-
       </div>
-
       <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
       
       
@@ -60,7 +52,7 @@
           <div class="am-form-group">
             <label for="user-name" class="am-u-sm-3 am-form-label">课件名称 </label>
             <div class="am-u-sm-9">
-              <input type="text" id="user-name" name="realName" placeholder="姓名 / Name" value="${courseware.realName}">
+              <input type="text" id="user-name" name="realName" placeholder="课件名称  / Name" value="${courseware.realName}" readonly="readonly">
              <!--  <small>账号</small> -->
             </div>
           </div>
@@ -75,7 +67,7 @@
            <div class="am-form-group">
             <label for="user-email" class="am-u-sm-3 am-form-label">权重 </label>
             <div class="am-u-sm-9">
-              <input type="text" id="user-email" name="weight"  placeholder="权重  " value="${courseware.weight}">
+              <input type="text" id="user-email" name="weight" placeholder="权重(只能输入整数)" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"value="${courseware.weight}">
             </div>
           </div>
           

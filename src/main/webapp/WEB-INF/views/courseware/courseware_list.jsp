@@ -59,7 +59,7 @@
       <div class="am-u-md-3 am-cf">
         <div class="am-fr">
           <div class="am-input-group am-input-group-sm">
-            <input type="text" id="realName" name="realName" class="am-form-field" placeholder="请输入老师姓名">
+            <input type="text" id="realName" name="realName" class="am-form-field" placeholder="请输入课件姓名">
                 <span class="am-input-group-btn">
                   <button id="query" class="am-btn am-btn-default" type="button">搜索</button>
                 </span>

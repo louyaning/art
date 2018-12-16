@@ -39,9 +39,9 @@
   </header>
   
   <div class="am-cf admin-main">
-  
+  <c:if test="${'管理员' eq sessionScope.user.type}">
   <%@ include file="/common/left.jsp"%>
-
+  </c:if>
   <!-- content start -->
   	<div class="admin-content">
 	  	

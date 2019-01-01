@@ -47,17 +47,19 @@ public interface UserService {
 
     List<User> getAll(User user);
 
+    List<User> getAllTeachers(User user);
+
     /**
     * 
     * 逻辑删除
     * @return
     */
     int updateByDelete(Long id);
-	
-	/**
+
+    /**
     * 
     * 查询老师
     * @return
     */
-	List<User> selectTeacher();
+    List<User> selectTeacher();
 }

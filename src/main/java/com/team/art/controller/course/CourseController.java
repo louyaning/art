@@ -20,8 +20,12 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.team.art.entity.age.Age;
 import com.team.art.entity.course.Course;
+import com.team.art.entity.log.Log;
+import com.team.art.entity.user.User;
 import com.team.art.service.age.AgeService;
 import com.team.art.service.course.CourseService;
+import com.team.art.service.log.LogService;
+import com.team.art.util.SessionUtil;
 
 @Controller
 @RequestMapping("/course")
@@ -30,6 +34,8 @@ public class CourseController {
     private CourseService courseService;
     @Autowired
     private AgeService    ageService;
+    @Autowired
+    private LogService    logService;
 
     @RequestMapping("/courses")
     public String SearchPage(@RequestParam(value = "pn", defaultValue = "1") Integer pn,
@@ -69,6 +75,12 @@ public class CourseController {
         course.setIsDelete(1);
         int result = courseService.insertSelective(course);
         if (result == 1) {
+            Log log = new Log();
+            User attribute = (User) SessionUtil.getSession().getAttribute("user");
+            log.setUserName(attribute.getUsername());
+            log.setUserId(attribute.getId());
+            log.setOpera(attribute.getUsername() + "新增课程" + course.getCourseName());
+            logService.insert(log);
             return "redirect:courses";
         } else {
             return "注册失败";
@@ -87,6 +99,12 @@ public class CourseController {
         course.setModifyDatetime(modifyDatetime);
         int result = courseService.updateByPrimaryKeySelective(course);
         if (result == 1) {
+            Log log = new Log();
+            User attribute = (User) SessionUtil.getSession().getAttribute("user");
+            log.setUserName(attribute.getUsername());
+            log.setUserId(attribute.getId());
+            log.setOpera(attribute.getUsername() + "更新课程" + course.getCourseName());
+            logService.insert(log);
             return "redirect:courses";
         } else {
             return "注册失败";

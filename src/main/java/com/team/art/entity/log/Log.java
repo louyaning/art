@@ -3,13 +3,15 @@ package com.team.art.entity.log;
 import java.util.Date;
 
 public class Log {
-    private Long id;
+    private Long   id;
 
-    private Long userId;
+    private Long   userId;
 
     private String userName;
 
-    private Date loginTime;
+    private Date   loginTime;
+
+    private String opera;
 
     public Long getId() {
         return id;
@@ -42,4 +44,13 @@ public class Log {
     public void setLoginTime(Date loginTime) {
         this.loginTime = loginTime;
     }
+
+    public String getOpera() {
+        return opera;
+    }
+
+    public void setOpera(String opera) {
+        this.opera = opera;
+    }
+
 }

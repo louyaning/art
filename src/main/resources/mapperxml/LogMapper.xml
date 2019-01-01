@@ -6,9 +6,10 @@
     <result column="user_id" property="userId" jdbcType="BIGINT" />
     <result column="user_name" property="userName" jdbcType="VARCHAR" />
     <result column="login_time" property="loginTime" jdbcType="TIMESTAMP" />
+    <result column="opera" property="opera" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, user_id, user_name, login_time
+    id, user_id, user_name, login_time,opera
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -22,9 +23,9 @@
   </delete>
   <insert id="insert" parameterType="com.team.art.entity.log.Log" >
     insert into log (id, user_id, user_name, 
-      login_time)
+      login_time,opera)
     values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, 
-      #{loginTime,jdbcType=TIMESTAMP})
+      #{loginTime,jdbcType=TIMESTAMP},#{opera,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.team.art.entity.log.Log" >
     insert into log
@@ -41,6 +42,9 @@
       <if test="loginTime != null" >
         login_time,
       </if>
+       <if test="opera != null" >
+        opera,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -54,6 +58,9 @@
       </if>
       <if test="loginTime != null" >
         #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="opera != null" >
+        #{opera,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -85,7 +92,6 @@
     select
     <include refid="Base_Column_List" />
     from log  
-     
     <if test="userName !=null and userName !=''">
     where user_name like CONCAT('%',#{userName},'%') 
     </if> 

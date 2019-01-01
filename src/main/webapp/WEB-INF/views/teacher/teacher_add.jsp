@@ -14,7 +14,7 @@
   <title>点石艺术后台管理系统</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Amaze后台管理系统模板HTML首页 - cssmoban</title>
+  <title>Amaze后台管理系统模板</title>
   <meta name="description" content="这是一个 index 页面">
   <meta name="keywords" content="index">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -88,7 +88,10 @@
             <div class="am-u-sm-9">
             <select  id="type" name="type">
               <option value="老师">老师</option>
+              <c:if test="${'超级管理员' eq sessionScope.user.type}">
               <option value="管理员">管理员</option>
+              <option value="超级管理员">超级管理员</option>
+              </c:if>
             </select>
             </div>
           </div>

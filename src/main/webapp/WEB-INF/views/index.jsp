@@ -39,7 +39,7 @@
   </header>
   
   <div class="am-cf admin-main">
-  <c:if test="${'管理员' eq sessionScope.user.type}">
+  <c:if test="${'管理员' eq sessionScope.user.type || '超级管理员' eq sessionScope.user.type}">
   <%@ include file="/common/left.jsp"%>
   </c:if>
   <!-- content start -->

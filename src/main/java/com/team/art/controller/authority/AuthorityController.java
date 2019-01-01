@@ -16,9 +16,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.team.art.entity.course.Course;
+import com.team.art.entity.log.Log;
 import com.team.art.entity.permission.Permission;
+import com.team.art.entity.user.User;
 import com.team.art.service.authority.PermissonionService;
 import com.team.art.service.course.CourseService;
+import com.team.art.service.log.LogService;
+import com.team.art.util.SessionUtil;
 
 /**
  * 
@@ -32,6 +36,9 @@ public class AuthorityController {
 
     @Autowired
     private PermissonionService permissionService;
+
+    @Autowired
+    private LogService          logService;
 
     @RequestMapping("/toAuthority")
     public ModelAndView toAdd() {
@@ -63,6 +70,13 @@ public class AuthorityController {
         permission.setCreateDatetime(createDatetime);
         permission.setIsDelete(1);
         permissionService.insertSelective(permission);
+        Log log = new Log();
+        User attribute = (User) SessionUtil.getSession().getAttribute("user");
+        log.setUserName(attribute.getUsername());
+        log.setUserId(attribute.getId());
+        log.setOpera(
+            attribute.getUsername() + "分配课程" + permission.getCourseName() + "的权限给" + teacherName);
+        logService.insert(log);
         return "redirect:authoritys";
     }
 

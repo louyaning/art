@@ -70,6 +70,12 @@ public class UserController extends BaseController {
         int result = 0;
         result = userService.insertUser(user);
         if (result == 1) {
+            Log log = new Log();
+            User attribute = (User) SessionUtil.getSession().getAttribute("user");
+            log.setUserName(attribute.getUsername());
+            log.setUserId(attribute.getId());
+            log.setOpera(attribute.getUsername() + "新增老师" + user.getUsername());
+            logService.insert(log);
             saveMessage(redirectAttributes, "新增老师成功");
             return "redirect:users";
         } else {
@@ -101,7 +107,19 @@ public class UserController extends BaseController {
         //可传入连续显示的页数
         PageInfo page = new PageInfo(users, 6);
         model.addAttribute("pageInfo", page);
+        return "teacher/teacher_list";//由于视图解析器，会跳转到/WEB-INF/views/目录下
+    }
 
+    @RequestMapping("/teachers")
+    public String SearchPageTeachers(@RequestParam(value = "pn", defaultValue = "1") Integer pn,
+                                     Model model, User user) {
+        //使用分页插件
+        PageHelper.startPage(pn, 5);
+        List<User> users = userService.getAllTeachers(user);
+        //使用PageInfo包装查询后的结果，只需要将PageInfo交个页面就好了
+        //可传入连续显示的页数
+        PageInfo page = new PageInfo(users, 6);
+        model.addAttribute("pageInfo", page);
         return "teacher/teacher_list";//由于视图解析器，会跳转到/WEB-INF/views/目录下
 
     }
@@ -112,6 +130,12 @@ public class UserController extends BaseController {
         user.setModifyDatetime(modifyDatetime);
         int result = userService.updateByUser(user);
         if (result == 1) {
+            Log log = new Log();
+            User attribute = (User) SessionUtil.getSession().getAttribute("user");
+            log.setUserName(attribute.getUsername());
+            log.setUserId(attribute.getId());
+            log.setOpera(attribute.getUsername() + "更新老师" + user.getUsername());
+            logService.insert(log);
             return "redirect:users";
         } else {
             return "注册失败";
@@ -122,6 +146,12 @@ public class UserController extends BaseController {
     public String deleteUser(Long id) {
         int result = userService.updateByDelete(id);
         if (result == 1) {
+            Log log = new Log();
+            User attribute = (User) SessionUtil.getSession().getAttribute("user");
+            log.setUserName(attribute.getUsername());
+            log.setUserId(attribute.getId());
+            log.setOpera(attribute.getUsername() + "删除编号为" + id + "的老师");
+            logService.insert(log);
             return "redirect:users";
         } else {
             return "注册失败";
@@ -144,7 +174,6 @@ public class UserController extends BaseController {
     @RequestMapping("/remove")
     public String removeUser(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession(false);//防止创建Session
-
         if (session == null) {
             return "redirect:/web/login";
         }

@@ -192,6 +192,7 @@
     from user
     where username = #{username}
     and password= #{password}
+    and is_delete=1 
   </select>
   
   <!-- 分页查询 -->
@@ -204,9 +205,24 @@
     <if test="username !=null and username !=''">
      and username like CONCAT('%',#{username},'%') 
     </if> 
-    
     order by id ASC
   </select>
+  
+  
+  
+  <select id="listAllTeachers" resultMap="BaseResultMap" parameterType="com.team.art.entity.user.User">
+    select
+    <include refid="Base_Column_List" />
+    from user 
+    where
+    is_delete=1 and type ='老师'
+    <if test="username !=null and username !=''">
+     and username like CONCAT('%',#{username},'%') 
+    </if> 
+    order by id ASC
+  </select>
+  
+  
   
    <select id="selectTeacher" resultMap="BaseResultMap" parameterType="com.team.art.entity.user.User">
     select

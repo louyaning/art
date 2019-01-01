@@ -49,12 +49,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> getAllTeachers(User user) {
+        return userMapper.listAllTeachers(user);
+    }
+
+    @Override
     public int updateByDelete(Long id) {
         int result = userMapper.updateByDelete(id);
         return result;
     }
-	
-	@Override
+
+    @Override
     public List<User> selectTeacher() {
         List<User> teachers = userMapper.selectTeacher();
         return teachers;

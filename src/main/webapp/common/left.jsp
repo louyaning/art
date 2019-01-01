@@ -16,7 +16,12 @@
         <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-file"></span> 人员管理 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
         <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
           <li><a href="${ctx}/user/toadd" class="am-cf"><span class="am-icon-check"></span> 新增老师<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
-          <li><a href="${ctx}/user/users"><span class="am-icon-puzzle-piece"></span> 老师列表</a></li>
+           <c:if test="${'超级管理员' eq sessionScope.user.type}">
+          <li><a href="${ctx}/user/users"><span class="am-icon-puzzle-piece"></span> 老师以及管理员列表</a></li>
+           </c:if>
+          <c:if test="${'管理员' eq sessionScope.user.type}">
+          <li><a href="${ctx}/user/teachers"><span class="am-icon-puzzle-piece"></span> 老师列表</a></li>
+          </c:if>
           <li><a href="${ctx}/log/logs"><span class="am-icon-calendar"></span> 登录日志</a></li>
         </ul>
       </li>

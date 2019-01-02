@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.team.art.entity.NoticeInfo;
 import com.team.art.entity.ScriptPage;
 import com.team.art.entity.course.Course;
 import com.team.art.entity.courseware.CourseWare;
@@ -57,7 +58,7 @@ public class WebController {
 
                     List<CourseWare> listCoursesWareByBranch = courseWareService
                         .listCoursesWareByBranch(courseWare);
-
+                    request.setAttribute("notice", NoticeInfo.getNOTICE());	
                     request.setAttribute("listCoursesWareByBranch", listCoursesWareByBranch);
                 }
 
@@ -81,7 +82,7 @@ public class WebController {
 
                     List<CourseWare> listCoursesWareByBranch = courseWareService
                         .listCoursesWareByBranch(courseWare);
-
+                    request.setAttribute("notice", NoticeInfo.getNOTICE());	
                     request.setAttribute("listCoursesWareByBranch", listCoursesWareByBranch);
                 }
 
@@ -132,5 +133,25 @@ public class WebController {
 
         return new ResponseEntity<byte[]>(FileUtils.readFileToByteArray(file), headers,
             HttpStatus.CREATED);
+    }
+    
+    
+    
+    /**
+     * 修改公共
+     */
+    @ResponseBody
+    @RequestMapping("saveNotcie")
+    public String saveNotice(String notice){
+    	NoticeInfo.setNOTICE(notice);
+    	return "SUCCESS";
+    }
+    /**
+     * 获取公共
+     */
+    @ResponseBody
+    @RequestMapping("getNotcie")
+    public String getNotice(){
+    	return NoticeInfo.getNOTICE();
     }
 }

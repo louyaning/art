@@ -62,9 +62,45 @@
     <div class="am-panel am-panel-default admin-sidebar-panel">
       <div class="am-panel-bd">
         <p><span class="am-icon-bookmark"></span> 公告</p>
-        <p>时光静好，与君语；细水流年，与君同。—— 点石艺术</p>
+        <p id="contentNotice">${notice}</p>
+        <textarea rows="4" cols="20" style="display: none" id="getNotice">这是一个编辑框</textarea>
+        <button id="editNoticeBtn" onclick="editNotice()" type="button">编辑</button>
+         <button id="saveNoticeBtn"  onclick="saveNotice()"style="display: none" type="button">保存</button>
       </div>
     </div>
+    <script type="text/javascript">
+    //修改编辑框	
+    function editNotice() {
+    		$("#contentNotice").hide();
+    		var txt = $("#contentNotice").text();
+			$("#saveNoticeBtn").show();
+			$("#getNotice").text(txt);
+			$("#getNotice").show();
+			
+		}
+    	//保存编辑框
+    	function saveNotice() {
+    		var txt = $("#getNotice").text();
+    	
+    		$.ajax({
+    	        type: "post",
+    	        url: "../saveNotcie",
+    	        data:{notice:txt},
+    	        dataType: "json",
+    	        async: true,
+    	        success: function (data) {
+    	        	console.log(data);
+    	        	$("#contentNotice").text(txt);
+    	        	$("#saveNoticeBtn").hide();
+    	        	$("#contentNotice").show();
+    	        	$("#getNotice").text();
+    	        	$("#getNotice").hide();
+    	        	}
+    	     
+    	    });
+    		
+		}
+    </script>
 
     <div class="am-panel am-panel-default admin-sidebar-panel">
       <div class="am-panel-bd">

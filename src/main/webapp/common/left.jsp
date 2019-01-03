@@ -80,21 +80,24 @@
 		}
     	//保存编辑框
     	function saveNotice() {
-    		var txt = $("#getNotice").text();
-    	
+    		var txt = $("#getNotice").val();
     		$.ajax({
     	        type: "post",
     	        url: "../saveNotcie",
-    	        data:{notice:txt},
+    	        data:{content:txt},
     	        dataType: "json",
     	        async: true,
     	        success: function (data) {
     	        	console.log(data);
-    	        	$("#contentNotice").text(txt);
-    	        	$("#saveNoticeBtn").hide();
-    	        	$("#contentNotice").show();
-    	        	$("#getNotice").text();
-    	        	$("#getNotice").hide();
+    	        	if(data.msg == "SUCCESS"){
+    	        		alert("修改成功");
+    	        		$("#contentNotice").text(txt);
+        	        	$("#saveNoticeBtn").hide();
+        	        	$("#contentNotice").show();
+        	        	$("#getNotice").text();
+        	        	$("#getNotice").hide();
+    	        	}
+    	        	
     	        	}
     	     
     	    });

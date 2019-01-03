@@ -1,11 +1,40 @@
 package com.team.art.entity;
 
 public class NoticeInfo {
-	private static String NOTICE = "时光静好，与君语；细水流年，与君同。—— 点石艺术";
-	public static void setNOTICE(String nOTICE) {
-		NOTICE = nOTICE;
+	private Integer id;
+	private String content;
+	private Integer isUse;
+	private Integer isDel;
+	
+	public Integer getId() {
+		return id;
 	}
-	public static String getNOTICE() {
-		return NOTICE;
+	public void setId(Integer id) {
+		this.id = id;
 	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public Integer getIsUse() {
+		return isUse;
+	}
+	public void setIsUse(Integer isUse) {
+		this.isUse = isUse;
+	}
+	public Integer getIsDel() {
+		return isDel;
+	}
+	public void setIsDel(Integer isDel) {
+		this.isDel = isDel;
+	}
+	@Override
+	public String toString() {
+		return "NoticeInfo [id=" + id + ", content=" + content + ", isUse=" + isUse + ", isDel=" + isDel + "]";
+	}
+	
+
+	
 }

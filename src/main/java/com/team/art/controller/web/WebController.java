@@ -21,6 +21,7 @@ import com.team.art.entity.ScriptPage;
 import com.team.art.entity.course.Course;
 import com.team.art.entity.courseware.CourseWare;
 import com.team.art.entity.user.User;
+import com.team.art.service.NoticeInfoService;
 import com.team.art.service.course.CourseService;
 import com.team.art.service.courseware.CourseWareService;
 import com.team.art.service.user.UserService;
@@ -34,6 +35,8 @@ public class WebController {
     private CourseWareService courseWareService;
     @Autowired
     private UserService       userService;
+    @Autowired
+    private NoticeInfoService noticeInfoService;
 
     @RequestMapping("/web/index")
     public String index(CourseWare courseWare, HttpServletRequest request) {
@@ -42,9 +45,13 @@ public class WebController {
         Integer teacherId = Integer.valueOf(request.getParameter("teacherId"));
 
         User user = userService.selectByPrimaryKey(Long.valueOf(teacherId));
+        NoticeInfo notice = new NoticeInfo();
+        notice.setId(1);
+        NoticeInfo noticeInfo = noticeInfoService.selectByid(notice);
         if ("老师".equals(user.getType())) {
             //根据pid查出来所有一级id
             List<Course> courses = courceService.listCoursesByPid(0, teacherId.intValue());
+           
             try {
                 if (courses.size() > 0) {
                     //循环取出所有的二级菜单
@@ -58,7 +65,8 @@ public class WebController {
 
                     List<CourseWare> listCoursesWareByBranch = courseWareService
                         .listCoursesWareByBranch(courseWare);
-                    request.setAttribute("notice", NoticeInfo.getNOTICE());	
+                   
+                    request.setAttribute("notice", noticeInfo.getContent());	
                     request.setAttribute("listCoursesWareByBranch", listCoursesWareByBranch);
                 }
 
@@ -82,7 +90,7 @@ public class WebController {
 
                     List<CourseWare> listCoursesWareByBranch = courseWareService
                         .listCoursesWareByBranch(courseWare);
-                    request.setAttribute("notice", NoticeInfo.getNOTICE());	
+                    request.setAttribute("notice", noticeInfo.getContent());
                     request.setAttribute("listCoursesWareByBranch", listCoursesWareByBranch);
                 }
 
@@ -140,18 +148,26 @@ public class WebController {
     /**
      * 修改公共
      */
-    @ResponseBody
+  
     @RequestMapping("saveNotcie")
-    public String saveNotice(String notice){
-    	NoticeInfo.setNOTICE(notice);
-    	return "SUCCESS";
+    @ResponseBody
+    public String saveNotice(NoticeInfo notice){
+    	
+    	notice.setId(1);
+    	int count = noticeInfoService.updateByPrimaryKeySelective(notice);
+    	if(count > 0){
+    		return "{\"msg\":\"SUCCESS\"}";
+    	}else{
+    		return "{\"msg\":\"ERROR\"}";
+    	}
+    	
     }
     /**
      * 获取公共
      */
-    @ResponseBody
-    @RequestMapping("getNotcie")
-    public String getNotice(){
-    	return NoticeInfo.getNOTICE();
-    }
+//    @ResponseBody
+//    @RequestMapping("getNotcie")
+//    public String getNotice(){
+//    	return NoticeInfo.getNOTICE();
+//    }
 }
